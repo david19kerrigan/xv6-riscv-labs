@@ -6,12 +6,15 @@ int
 main(int argc, char *argv[])
 {
   struct stat st;
+  struct dirent de;
   char buf[512];
+
   int fd = open(".", 0);
   fstat(fd, &st);
   stat(buf, &st);
-  printf("%s", fmtname(buf));
-  printf("here\n");
+  while(read(fd, &de, 1)){
+  }
+
   close(fd);
   exit(0);
 }

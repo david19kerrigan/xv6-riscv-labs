@@ -4,35 +4,36 @@
 #include "user/user.h"
 
 int find(char *path, char *name){
-  if(fork() == 0){
-    struct dirent de;
-    struct stat st;
+  struct dirent de;
+  struct stat st;
 
-    int fd = open(path, 0);
-    fstat(fd, &st);
-    if(st.type == T_DIR){
-      while(read(fd, &de, sizeof(de))){
-        if(de.inum == 0) continue;
-        printf("%s %d\n", de.name, st.type);
-        //char buf[512], *new_path;
-        //new_path = buf + strlen(buf);
-        //*new_path++ = '/';
-        //stat(buf, &st);
-        //memcpy(new_path, de.name, DIRSIZ);
-        //new_path[DIRSIZ] = 0;
-        close(fd);
-        return find(path, name);
+  int fd = open(path, 0);
+  fstat(fd, &st);
+
+  if(st.type == T_DIR){
+    while(read(fd, &de, sizeof(de))){
+      if(de.inum == 0 || strcmp(de.name, ".") == 0 || strcmp(de.name, "..") == 0) continue;
+      char buf[512], *new_path;
+      strcpy(buf, path);
+      new_path = buf + strlen(buf);
+      *new_path++ = '/';
+      memmove(new_path, de.name, DIRSIZ);
+      new_path[DIRSIZ] = 0;
+      stat(buf, &st);
+
+      if(strcmp(de.name, name) == 0){
+        printf("%s\n", buf);
+      }
+      if(fork() == 0){
+        return find(buf, name);
       }
     }
+  } 
 
-    close(fd);
-    return 0;
-  } else {
-    wait(0);
-    return 0;
-  }
+  close(fd);
+  return 0;
 }
 
 int main(int argc, char *argv[]){
-  find(".", "test");
+  find(".", argv[1]);
 }

@@ -13,13 +13,12 @@ int find(char *path, char *name){
   if(st.type == T_DIR){
     while(read(fd, &de, sizeof(de))){
       if(de.inum == 0 || strcmp(de.name, ".") == 0 || strcmp(de.name, "..") == 0) continue;
-      char buf[512], *new_path;
+      char buf[512], *p;
       strcpy(buf, path);
-      new_path = buf + strlen(buf);
-      *new_path++ = '/';
-      memmove(new_path, de.name, DIRSIZ);
-      new_path[DIRSIZ] = 0;
-      stat(buf, &st);
+      p = buf + strlen(buf);
+      *p++ = '/';
+      memmove(p, de.name, DIRSIZ);
+      p[DIRSIZ] = 0;
 
       if(strcmp(de.name, name) == 0){
         printf("%s\n", buf);
@@ -35,5 +34,9 @@ int find(char *path, char *name){
 }
 
 int main(int argc, char *argv[]){
-  find(".", argv[1]);
+  if(argc < 3 || argc > 3){
+    printf("Incorrect arguments\n");
+    exit(0);
+  }
+  find(argv[1], argv[2]);
 }

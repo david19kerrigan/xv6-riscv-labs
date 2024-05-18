@@ -6,15 +6,23 @@ int
 main(int argc, char *argv[])
 {
   char buf;
-  int fd[2];
 
-  pipe(fd);
-  close(fd[1]);
-
+  char *word = (char*)malloc(512);
+  char **array = (char**)malloc(512);
+  char *start = word;
+  int i = 0;
   while(read(0, &buf, 1) > 0){
-    char *word;
-    char *words[];
-    printf("%c\n", buf);
+    *word++ = buf;
+    if(buf == ' '){
+      *--word = 0;
+      printf("word: (%s)\n", start);
+      array[i] = "";
+      memcpy(array[i], start, word-start);
+      printf("arr: (%s)\n", array[i]);
+      start = word;
+    }
   }
+  free(word);
+  free(array);
   return 0;
 }

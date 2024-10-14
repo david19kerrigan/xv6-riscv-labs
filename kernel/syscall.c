@@ -142,6 +142,7 @@ syscall(void)
     // and store its return value in p->trapframe->a0
     p->trapframe->a0 = syscalls[num]();
     if((p->trace_mask & num) == num){
+      printf("bitmask is %d\n", p->trace_mask);
       printf("syscall %d -> %d\n", num, p->trapframe->a0);
     }
   } else {

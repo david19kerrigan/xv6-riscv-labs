@@ -10,15 +10,15 @@ main(int argc, char *argv[])
     exit(1);
   }
 
-  //trace((int) *argv[1]);
-  char **array = (char**)malloc(512);
-  for(int i = 3; i < argc; ++i){
-    array[i-3] = (char*)malloc(512);
-    memcpy(array[i-3], argv[i], sizeof(argv[i]));
+  trace((int) *argv[1]);
+
+  if(fork() == 0){
+    exec(argv[2], &argv[2]);
+  } else{
+    wait(0);
   }
 
-  char *test[3] = {"echo", "hello", 0};
-  exec("echo", test);
+  trace(0);
 
   exit(0);
 }

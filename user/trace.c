@@ -5,15 +5,18 @@
 int
 main(int argc, char *argv[])
 {
-  int i;
-
-  for(i = 1; i < argc; i++){
-    write(1, argv[i], strlen(argv[i]));
-    if(i + 1 < argc){
-      write(1, " ", 1);
-    } else {
-      write(1, "\n", 1);
-    }
+  if(argc < 2){
+    printf("Usage: trace flag command args\n");
+    exit(1);
   }
+
+  trace((int) *argv[1]);
+  char **array = (char**)malloc(512);
+  for(int i = 3; i < argc; ++i){
+    array[i-3] = (char*)malloc(512);
+    memcpy(array[i-3], argv[i], sizeof(argv[i]));
+  }
+  exec(argv[2], array);
+
   exit(0);
 }

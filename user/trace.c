@@ -10,13 +10,15 @@ main(int argc, char *argv[])
     exit(1);
   }
 
-  trace((int) *argv[1]);
+  //trace((int) *argv[1]);
   char **array = (char**)malloc(512);
   for(int i = 3; i < argc; ++i){
     array[i-3] = (char*)malloc(512);
     memcpy(array[i-3], argv[i], sizeof(argv[i]));
   }
-  exec(argv[2], array);
+
+  char *test[3] = {"echo", "hello", 0};
+  exec("echo", test);
 
   exit(0);
 }

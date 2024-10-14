@@ -142,7 +142,7 @@ syscall(void)
     // and store its return value in p->trapframe->a0
     p->trapframe->a0 = syscalls[num]();
     if((p->trace_mask & num) == num){
-      printf("%d\n", p->trapframe->a0);
+      printf("syscall %d -> %d\n", num, p->trapframe->a0);
     }
   } else {
     printf("%d %s: unknown sys call %d\n",

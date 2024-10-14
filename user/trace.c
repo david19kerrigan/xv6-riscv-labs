@@ -18,7 +18,5 @@ main(int argc, char *argv[])
     wait(0);
   }
 
-  trace(0);
-
   exit(0);
 }

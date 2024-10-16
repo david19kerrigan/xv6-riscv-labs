@@ -5,51 +5,51 @@
 int
 main(int argc, char *argv[])
 {
-  char buf;
-  char *word = (char*)malloc(512);
-  char **array = (char**)malloc(512);
-  char *start = word;
+    char buf;
+    char *word = (char*)malloc(512);
+    char **array = (char**)malloc(512);
+    char *start = word;
 
-  if(argc < 2){
-    return 0;
-  }
-
-  array[0] = argv[0];
-  int j = 2;
-  int i = 1;
-  while(argv[j] > 0){
-    array[i] = (char*)malloc(512);
-    memcpy(array[i], argv[j], sizeof(argv[j]));
-    i++;
-    j++;
-  }
-
-  while(read(0, &buf, 1) > 0){
-    *word++ = buf;
-    if(buf == ' '){
-      *--word = 0;
-      array[i] = (char*)malloc(512);
-      memcpy(array[i++], start, word-start);
-      start = word;
+    if(argc < 2){
+        return 0;
     }
-  }
 
-  *--word = 0;
-  array[i] = (char*)malloc(512);
-  memcpy(array[i], start, word-start);
+    array[0] = argv[0];
+    int j = 2;
+    int i = 1;
+    while(argv[j] > 0){
+        array[i] = (char*)malloc(512);
+        memcpy(array[i], argv[j], sizeof(argv[j]));
+        i++;
+        j++;
+    }
 
-  if(fork() == 0){
-    printf("test: (%s)\n", array[2]);
-    exec(argv[1], array);
-  } else{
-    wait(0);
-  }
+    while(read(0, &buf, 1) > 0){
+        *word++ = buf;
+        if(buf == ' '){
+            *--word = 0;
+            array[i] = (char*)malloc(512);
+            memcpy(array[i++], start, word-start);
+            start = word;
+        }
+    }
 
-  free(word);
-  i = 0;
-  while(array[i] > 0){
-    free(array[i++]);
-  }
-  free(array);
-  return 0;
+    *--word = 0;
+    array[i] = (char*)malloc(512);
+    memcpy(array[i], start, word-start);
+
+    if(fork() == 0){
+        printf("test: (%s)\n", array[2]);
+        exec(argv[1], array);
+    } else{
+        wait(0);
+    }
+
+    free(word);
+    i = 0;
+    while(array[i] > 0){
+        free(array[i++]);
+    }
+    free(array);
+    return 0;
 }

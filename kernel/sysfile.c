@@ -17,6 +17,7 @@
 #include "fcntl.h"
 
 int get_sys_info(){
+    return 0;
 }
 
 // Fetch the nth word-sized system call argument as a file descriptor

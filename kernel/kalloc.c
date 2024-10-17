@@ -23,7 +23,8 @@ struct {
     struct run *freelist;
 } kmem;
 
-int freemem(){
+int get_free_mem(){
+    struct proc *p = myproc();
     int ans = 0;
     struct run *r;
     r = kmem.freelist;
@@ -31,7 +32,9 @@ int freemem(){
         r = r->next;
         ans += 1;
     }
-    return ans;
+    if(copyout(p->pagetable, addr, (int *)&ans, sizeof(ans)) < 0)
+      return -1;
+    return 0;
 }
 
 void

@@ -167,8 +167,8 @@ Disassembly	user/rm.asm	/^Disassembly of section .text:$/;"	l
 Disassembly	user/sh.asm	/^Disassembly of section .text:$/;"	l
 Disassembly	user/sleep.asm	/^Disassembly of section .text:$/;"	l
 Disassembly	user/stressfs.asm	/^Disassembly of section .text:$/;"	l
+Disassembly	user/sysinfo.asm	/^Disassembly of section .text:$/;"	l
 Disassembly	user/trace.asm	/^Disassembly of section .text:$/;"	l
-Disassembly	user/tracee.asm	/^Disassembly of section .text:$/;"	l
 Disassembly	user/usertests.asm	/^Disassembly of section .text:$/;"	l
 Disassembly	user/wc.asm	/^Disassembly of section .text:$/;"	l
 Disassembly	user/xargs.asm	/^Disassembly of section .text:$/;"	l
@@ -441,7 +441,7 @@ a	user/primes.asm	/^   a:	0880                	addi	s0,sp,80$/;"	l
 a	user/rm.asm	/^   a:	02a7dd63          	bge	a5,a0,44 <main+0x44>$/;"	l
 a	user/sh.asm	/^       a:	1000                	addi	s0,sp,32$/;"	l
 a	user/sleep.asm	/^   a:	00f50f63          	beq	a0,a5,28 <main+0x28>$/;"	l
-a	user/trace.asm	/^   a:	04a7d163          	bge	a5,a0,4c <main+0x4c>$/;"	l
+a	user/trace.asm	/^   a:	02a7de63          	bge	a5,a0,46 <main+0x46>$/;"	l
 a	user/usertests.asm	/^    a = b + 1;$/;"	d
 a	user/usertests.asm	/^    a = sbrk(0);$/;"	d
 a	user/usertests.asm	/^    a = sbrk(TOOMUCH);$/;"	d
@@ -457,8 +457,8 @@ a0	user/kill.asm	/^  a0:	8082                	ret$/;"	l
 a0	user/ln.asm	/^  a0:	e022                	sd	s0,0(sp)$/;"	l
 a0	user/mkdir.asm	/^  a0:	0785                	addi	a5,a5,1$/;"	l
 a0	user/rm.asm	/^  a0:	0785                	addi	a5,a5,1$/;"	l
-a0	user/trace.asm	/^  a0:	fee78fa3          	sb	a4,-1(a5)$/;"	l
-a0	user/tracee.asm	/^  a0:	0141                	addi	sp,sp,16$/;"	l
+a0	user/sysinfo.asm	/^  a0:	0785                	addi	a5,a5,1$/;"	l
+a0	user/trace.asm	/^  a0:	60a2                	ld	ra,8(sp)$/;"	l
 a0	user/usertests.asm	/^      a0:	e426                	sd	s1,8(sp)$/;"	l
 a0	user/wc.asm	/^  a0:	86e6                	mv	a3,s9$/;"	l
 a0	user/zombie.asm	/^  a0:	cf99                	beqz	a5,be <strlen+0x2a>$/;"	l
@@ -535,7 +535,8 @@ a2	user/rm.asm	/^  a2:	fff5c703          	lbu	a4,-1(a1)$/;"	l
 a2	user/sh.asm	/^      a2:	00000097          	auipc	ra,0x0$/;"	l
 a2	user/sleep.asm	/^  a2:	40a7853b          	subw	a0,a5,a0$/;"	l
 a2	user/stressfs.asm	/^  a2:	20000993          	li	s3,512$/;"	l
-a2	user/tracee.asm	/^  a2:	8082                	ret$/;"	l
+a2	user/sysinfo.asm	/^  a2:	fff7c703          	lbu	a4,-1(a5)$/;"	l
+a2	user/trace.asm	/^  a2:	6402                	ld	s0,0(sp)$/;"	l
 a2	user/usertests.asm	/^      a2:	1000                	addi	s0,sp,32$/;"	l
 a2	user/wc.asm	/^  a2:	8662                	mv	a2,s8$/;"	l
 a2	user/xargs.asm	/^  a2:	04a05363          	blez	a0,e8 <main+0xe8>$/;"	l
@@ -601,8 +602,7 @@ a4	user/grep.asm	/^  a4:	0005c683          	lbu	a3,0(a1)$/;"	l
 a4	user/kill.asm	/^  a4:	e406                	sd	ra,8(sp)$/;"	l
 a4	user/ln.asm	/^  a4:	00054783          	lbu	a5,0(a0)$/;"	l
 a4	user/pingpong.asm	/^  a4:	00000097          	auipc	ra,0x0$/;"	l
-a4	user/trace.asm	/^  a4:	fb75                	bnez	a4,98 <strcpy+0xa>$/;"	l
-a4	user/tracee.asm	/^  a4:	1141                	addi	sp,sp,-16$/;"	l
+a4	user/trace.asm	/^  a4:	0141                	addi	sp,sp,16$/;"	l
 a4	user/usertests.asm	/^      a4:	84aa                	mv	s1,a0$/;"	l
 a4	user/wc.asm	/^  a4:	85de                	mv	a1,s7$/;"	l
 a4	user/zombie.asm	/^  a4:	87aa                	mv	a5,a0$/;"	l
@@ -678,8 +678,8 @@ a6	user/rm.asm	/^  a6:	fee78fa3          	sb	a4,-1(a5)$/;"	l
 a6	user/sh.asm	/^      a6:	fb4080e7          	jalr	-76(ra) # 56 <panic>$/;"	l
 a6	user/sleep.asm	/^  a6:	60a2                	ld	ra,8(sp)$/;"	l
 a6	user/stressfs.asm	/^  a6:	864e                	mv	a2,s3$/;"	l
-a6	user/trace.asm	/^  a6:	60a2                	ld	ra,8(sp)$/;"	l
-a6	user/tracee.asm	/^  a6:	e406                	sd	ra,8(sp)$/;"	l
+a6	user/sysinfo.asm	/^  a6:	ff65                	bnez	a4,9e <strlen+0x12>$/;"	l
+a6	user/trace.asm	/^  a6:	8082                	ret$/;"	l
 a6	user/usertests.asm	/^      a6:	4581                	li	a1,0$/;"	l
 a6	user/wc.asm	/^  a6:	00001517          	auipc	a0,0x1$/;"	l
 a6	user/xargs.asm	/^  a6:	00148713          	addi	a4,s1,1$/;"	l
@@ -749,8 +749,8 @@ a8	user/ls.asm	/^  a8:	6942                	ld	s2,16(sp)$/;"	l
 a8	user/pingpong.asm	/^  a8:	3ce080e7          	jalr	974(ra) # 472 <getpid>$/;"	l
 a8	user/sleep.asm	/^  a8:	6402                	ld	s0,0(sp)$/;"	l
 a8	user/stressfs.asm	/^  a8:	85d2                	mv	a1,s4$/;"	l
-a8	user/trace.asm	/^  a8:	6402                	ld	s0,0(sp)$/;"	l
-a8	user/tracee.asm	/^  a8:	e022                	sd	s0,0(sp)$/;"	l
+a8	user/sysinfo.asm	/^  a8:	40a6853b          	subw	a0,a3,a0$/;"	l
+a8	user/trace.asm	/^  a8:	1141                	addi	sp,sp,-16$/;"	l
 a8	user/usertests.asm	/^      a8:	00006517          	auipc	a0,0x6$/;"	l
 a8	user/zombie.asm	/^  a8:	0785                	addi	a5,a5,1$/;"	l
 a80	user/ls.asm	/^ a80:	6a42                	ld	s4,16(sp)$/;"	l
@@ -812,8 +812,7 @@ aa	user/rm.asm	/^  aa:	fb75                	bnez	a4,9e <strcpy+0xa>$/;"	l
 aa	user/sh.asm	/^      aa:	7179                	addi	sp,sp,-48$/;"	l
 aa	user/sleep.asm	/^  aa:	0141                	addi	sp,sp,16$/;"	l
 aa	user/stressfs.asm	/^  aa:	854a                	mv	a0,s2$/;"	l
-aa	user/trace.asm	/^  aa:	0141                	addi	sp,sp,16$/;"	l
-aa	user/tracee.asm	/^  aa:	0800                	addi	s0,sp,16$/;"	l
+aa	user/trace.asm	/^  aa:	e406                	sd	ra,8(sp)$/;"	l
 aa	user/wc.asm	/^  aa:	8da50513          	addi	a0,a0,-1830 # 980 <malloc+0x11c>$/;"	l
 aa	user/xargs.asm	/^  aa:	f9f44783          	lbu	a5,-97(s0)$/;"	l
 aa	user/zombie.asm	/^  aa:	fff7c703          	lbu	a4,-1(a5)$/;"	l
@@ -868,8 +867,8 @@ ac	user/rm.asm	/^  ac:	60a2                	ld	ra,8(sp)$/;"	l
 ac	user/sh.asm	/^      ac:	f406                	sd	ra,40(sp)$/;"	l
 ac	user/sleep.asm	/^  ac:	8082                	ret$/;"	l
 ac	user/stressfs.asm	/^  ac:	00000097          	auipc	ra,0x0$/;"	l
-ac	user/trace.asm	/^  ac:	8082                	ret$/;"	l
-ac	user/tracee.asm	/^  ac:	00054783          	lbu	a5,0(a0)$/;"	l
+ac	user/sysinfo.asm	/^  ac:	2505                	addiw	a0,a0,1$/;"	l
+ac	user/trace.asm	/^  ac:	e022                	sd	s0,0(sp)$/;"	l
 ac	user/usertests.asm	/^      ac:	32050513          	addi	a0,a0,800 # 63c8 <malloc+0x136>$/;"	l
 ac0	user/ls.asm	/^ ac0:	74a2                	ld	s1,40(sp)$/;"	l
 ac2	user/grind.asm	/^     ac2:	00000097          	auipc	ra,0x0$/;"	l
@@ -923,7 +922,8 @@ ae	user/primes.asm	/^  ae:	e115                	bnez	a0,d2 <pipeline+0xd2>$/;"	l
 ae	user/rm.asm	/^  ae:	6402                	ld	s0,0(sp)$/;"	l
 ae	user/sh.asm	/^      ae:	f022                	sd	s0,32(sp)$/;"	l
 ae	user/sleep.asm	/^  ae:	1141                	addi	sp,sp,-16$/;"	l
-ae	user/trace.asm	/^  ae:	1141                	addi	sp,sp,-16$/;"	l
+ae	user/sysinfo.asm	/^  ae:	60a2                	ld	ra,8(sp)$/;"	l
+ae	user/trace.asm	/^  ae:	0800                	addi	s0,sp,16$/;"	l
 ae	user/wc.asm	/^  ae:	00000097          	auipc	ra,0x0$/;"	l
 ae	user/xargs.asm	/^  ae:	fef70fa3          	sb	a5,-1(a4)$/;"	l
 ae	user/zombie.asm	/^  ae:	ff65                	bnez	a4,a6 <strlen+0x12>$/;"	l
@@ -986,8 +986,8 @@ b0	user/rm.asm	/^  b0:	0141                	addi	sp,sp,16$/;"	l
 b0	user/sh.asm	/^      b0:	1800                	addi	s0,sp,48$/;"	l
 b0	user/sleep.asm	/^  b0:	e406                	sd	ra,8(sp)$/;"	l
 b0	user/stressfs.asm	/^  b0:	352080e7          	jalr	850(ra) # 3fe <write>$/;"	l
-b0	user/trace.asm	/^  b0:	e406                	sd	ra,8(sp)$/;"	l
-b0	user/tracee.asm	/^  b0:	cf99                	beqz	a5,ce <strlen+0x2a>$/;"	l
+b0	user/sysinfo.asm	/^  b0:	6402                	ld	s0,0(sp)$/;"	l
+b0	user/trace.asm	/^  b0:	00054783          	lbu	a5,0(a0)$/;"	l
 b0	user/usertests.asm	/^      b0:	00006097          	auipc	ra,0x6$/;"	l
 b0	user/zombie.asm	/^  b0:	40a6853b          	subw	a0,a3,a0$/;"	l
 b00	user/sh.asm	/^     b00:	fd379ce3          	bne	a5,s3,ad8 <main+0x4e>$/;"	l
@@ -1031,8 +1031,7 @@ b2	user/pingpong.asm	/^  b2:	87a50513          	addi	a0,a0,-1926 # 928 <malloc+0
 b2	user/rm.asm	/^  b2:	8082                	ret$/;"	l
 b2	user/sh.asm	/^      b2:	c115                	beqz	a0,d6 <runcmd+0x2c>$/;"	l
 b2	user/sleep.asm	/^  b2:	e022                	sd	s0,0(sp)$/;"	l
-b2	user/trace.asm	/^  b2:	e022                	sd	s0,0(sp)$/;"	l
-b2	user/tracee.asm	/^  b2:	0505                	addi	a0,a0,1$/;"	l
+b2	user/sysinfo.asm	/^  b2:	0141                	addi	sp,sp,16$/;"	l
 b2	user/wc.asm	/^  b2:	6fa080e7          	jalr	1786(ra) # 7a8 <printf>$/;"	l
 b2	user/xargs.asm	/^  b2:	01478663          	beq	a5,s4,be <main+0xbe>$/;"	l
 b20	user/usertests.asm	/^     b20:	79a2                	ld	s3,40(sp)$/;"	l
@@ -1079,8 +1078,8 @@ b4	user/rm.asm	/^  b4:	1141                	addi	sp,sp,-16$/;"	l
 b4	user/sh.asm	/^      b4:	ec26                	sd	s1,24(sp)$/;"	l
 b4	user/sleep.asm	/^  b4:	0800                	addi	s0,sp,16$/;"	l
 b4	user/stressfs.asm	/^  b4:	34fd                	addiw	s1,s1,-1$/;"	l
-b4	user/trace.asm	/^  b4:	0800                	addi	s0,sp,16$/;"	l
-b4	user/tracee.asm	/^  b4:	87aa                	mv	a5,a0$/;"	l
+b4	user/sysinfo.asm	/^  b4:	8082                	ret$/;"	l
+b4	user/trace.asm	/^  b4:	cb91                	beqz	a5,c8 <strcmp+0x20>$/;"	l
 b4	user/usertests.asm	/^      b4:	e10080e7          	jalr	-496(ra) # 5ec0 <open>$/;"	l
 b4	user/zombie.asm	/^  b4:	2505                	addiw	a0,a0,1$/;"	l
 b40	user/sh.asm	/^     b40:	37c080e7          	jalr	892(ra) # eb8 <chdir>$/;"	l
@@ -1125,8 +1124,8 @@ b6	user/rm.asm	/^  b6:	e406                	sd	ra,8(sp)$/;"	l
 b6	user/sh.asm	/^      b6:	84aa                	mv	s1,a0$/;"	l
 b6	user/sleep.asm	/^  b6:	00054783          	lbu	a5,0(a0)$/;"	l
 b6	user/stressfs.asm	/^  b6:	f8e5                	bnez	s1,a6 <main+0xa6>$/;"	l
-b6	user/trace.asm	/^  b6:	00054783          	lbu	a5,0(a0)$/;"	l
-b6	user/tracee.asm	/^  b6:	86be                	mv	a3,a5$/;"	l
+b6	user/sysinfo.asm	/^  b6:	4501                	li	a0,0$/;"	l
+b6	user/trace.asm	/^  b6:	0005c703          	lbu	a4,0(a1)$/;"	l
 b6	user/wc.asm	/^  b6:	70e6                	ld	ra,120(sp)$/;"	l
 b6	user/xargs.asm	/^  b6:	84ba                	mv	s1,a4$/;"	l
 b6	user/zombie.asm	/^  b6:	60a2                	ld	ra,8(sp)$/;"	l
@@ -1169,7 +1168,7 @@ b8	user/primes.asm	/^  b8:	00000097          	auipc	ra,0x0$/;"	l
 b8	user/rm.asm	/^  b8:	e022                	sd	s0,0(sp)$/;"	l
 b8	user/sh.asm	/^      b8:	4118                	lw	a4,0(a0)$/;"	l
 b8	user/stressfs.asm	/^  b8:	854a                	mv	a0,s2$/;"	l
-b8	user/tracee.asm	/^  b8:	0785                	addi	a5,a5,1$/;"	l
+b8	user/sysinfo.asm	/^  b8:	bfdd                	j	ae <strlen+0x22>$/;"	l
 b8	user/usertests.asm	/^      b8:	02054663          	bltz	a0,e4 <opentest+0x4a>$/;"	l
 b8	user/wc.asm	/^  b8:	7446                	ld	s0,112(sp)$/;"	l
 b8	user/xargs.asm	/^  b8:	bff1                	j	94 <main+0x94>$/;"	l
@@ -1218,8 +1217,8 @@ ba	user/rm.asm	/^  ba:	0800                	addi	s0,sp,16$/;"	l
 ba	user/sh.asm	/^      ba:	4795                	li	a5,5$/;"	l
 ba	user/sleep.asm	/^  ba:	cf99                	beqz	a5,d8 <strlen+0x2a>$/;"	l
 ba	user/stressfs.asm	/^  ba:	00000097          	auipc	ra,0x0$/;"	l
-ba	user/trace.asm	/^  ba:	cb91                	beqz	a5,ce <strcmp+0x20>$/;"	l
-ba	user/tracee.asm	/^  ba:	fff7c703          	lbu	a4,-1(a5)$/;"	l
+ba	user/sysinfo.asm	/^  ba:	1141                	addi	sp,sp,-16$/;"	l
+ba	user/trace.asm	/^  ba:	00f71763          	bne	a4,a5,c8 <strcmp+0x20>$/;"	l
 ba	user/wc.asm	/^  ba:	74a6                	ld	s1,104(sp)$/;"	l
 ba	user/xargs.asm	/^  ba:	4a85                	li	s5,1$/;"	l
 ba	user/zombie.asm	/^  ba:	0141                	addi	sp,sp,16$/;"	l
@@ -1274,7 +1273,7 @@ bc	user/primes.asm	/^  bc:	f48080e7          	jalr	-184(ra) # 0 <pipeline>$/;"	l
 bc	user/rm.asm	/^  bc:	00054783          	lbu	a5,0(a0)$/;"	l
 bc	user/sh.asm	/^      bc:	02e7e363          	bltu	a5,a4,e2 <runcmd+0x38>$/;"	l
 bc	user/sleep.asm	/^  bc:	0505                	addi	a0,a0,1$/;"	l
-bc	user/trace.asm	/^  bc:	0005c703          	lbu	a4,0(a1)$/;"	l
+bc	user/sysinfo.asm	/^  bc:	e406                	sd	ra,8(sp)$/;"	l
 bc	user/usertests.asm	/^      bc:	00006097          	auipc	ra,0x6$/;"	l
 bc	user/wc.asm	/^  bc:	7906                	ld	s2,96(sp)$/;"	l
 bc	user/xargs.asm	/^  bc:	b7d9                	j	82 <main+0x82>$/;"	l
@@ -1322,7 +1321,8 @@ be	user/ls.asm	/^  be:	0d00                	addi	s0,sp,656$/;"	l
 be	user/pingpong.asm	/^  be:	4605                	li	a2,1$/;"	l
 be	user/sleep.asm	/^  be:	87aa                	mv	a5,a0$/;"	l
 be	user/stressfs.asm	/^  be:	34c080e7          	jalr	844(ra) # 406 <close>$/;"	l
-be	user/tracee.asm	/^  be:	ff65                	bnez	a4,b6 <strlen+0x12>$/;"	l
+be	user/sysinfo.asm	/^  be:	e022                	sd	s0,0(sp)$/;"	l
+be	user/trace.asm	/^  be:	0505                	addi	a0,a0,1$/;"	l
 be	user/wc.asm	/^  be:	69e6                	ld	s3,88(sp)$/;"	l
 be	user/xargs.asm	/^  be:	00048023          	sb	zero,0(s1)$/;"	l
 be	user/zombie.asm	/^  be:	4501                	li	a0,0$/;"	l
@@ -1399,8 +1399,8 @@ bp	user/rm.asm	/^  bp = (Header*)ap - 1;$/;"	d
 bp	user/sh.asm	/^  bp = (Header*)ap - 1;$/;"	d
 bp	user/sleep.asm	/^  bp = (Header*)ap - 1;$/;"	d
 bp	user/stressfs.asm	/^  bp = (Header*)ap - 1;$/;"	d
+bp	user/sysinfo.asm	/^  bp = (Header*)ap - 1;$/;"	d
 bp	user/trace.asm	/^  bp = (Header*)ap - 1;$/;"	d
-bp	user/tracee.asm	/^  bp = (Header*)ap - 1;$/;"	d
 bp	user/usertests.asm	/^  bp = (Header*)ap - 1;$/;"	d
 bp	user/wc.asm	/^  bp = (Header*)ap - 1;$/;"	d
 bp	user/xargs.asm	/^  bp = (Header*)ap - 1;$/;"	d
@@ -1434,7 +1434,7 @@ c	user/pingpong.asm	/^   c:	00000097          	auipc	ra,0x0$/;"	l
 c	user/primes.asm	/^   c:	892a                	mv	s2,a0$/;"	l
 c	user/sh.asm	/^       c:	84aa                	mv	s1,a0$/;"	l
 c	user/stressfs.asm	/^   c:	22913423          	sd	s1,552(sp)$/;"	l
-c	user/tracee.asm	/^   c:	80850513          	addi	a0,a0,-2040 # 810 <malloc+0x102>$/;"	l
+c	user/sysinfo.asm	/^   c:	7e850513          	addi	a0,a0,2024 # 7f0 <malloc+0xfa>$/;"	l
 c	user/usertests.asm	/^       c:	4505                	li	a0,1$/;"	l
 c	user/usertests.asm	/^  c = sbrk(-(sbrk(0) - oldbrk));$/;"	d
 c	user/usertests.asm	/^  c = sbrk(-PGSIZE);$/;"	d
@@ -1457,8 +1457,8 @@ c0	user/primes.asm	/^  c0:	79a2                	ld	s3,40(sp)$/;"	l
 c0	user/rm.asm	/^  c0:	cb91                	beqz	a5,d4 <strcmp+0x20>$/;"	l
 c0	user/sh.asm	/^      c0:	00056783          	lwu	a5,0(a0)$/;"	l
 c0	user/sleep.asm	/^  c0:	86be                	mv	a3,a5$/;"	l
-c0	user/trace.asm	/^  c0:	00f71763          	bne	a4,a5,ce <strcmp+0x20>$/;"	l
-c0	user/tracee.asm	/^  c0:	40a6853b          	subw	a0,a3,a0$/;"	l
+c0	user/sysinfo.asm	/^  c0:	0800                	addi	s0,sp,16$/;"	l
+c0	user/trace.asm	/^  c0:	0585                	addi	a1,a1,1$/;"	l
 c0	user/usertests.asm	/^      c0:	dec080e7          	jalr	-532(ra) # 5ea8 <close>$/;"	l
 c0	user/wc.asm	/^  c0:	6a46                	ld	s4,80(sp)$/;"	l
 c0	user/zombie.asm	/^  c0:	bfdd                	j	b6 <strlen+0x22>$/;"	l
@@ -1509,6 +1509,8 @@ c2	user/primes.asm	/^  c2:	7a02                	ld	s4,32(sp)$/;"	l
 c2	user/rm.asm	/^  c2:	0005c703          	lbu	a4,0(a1)$/;"	l
 c2	user/sleep.asm	/^  c2:	0785                	addi	a5,a5,1$/;"	l
 c2	user/stressfs.asm	/^  c2:	00001517          	auipc	a0,0x1$/;"	l
+c2	user/sysinfo.asm	/^  c2:	ca19                	beqz	a2,d8 <memset+0x1e>$/;"	l
+c2	user/trace.asm	/^  c2:	00054783          	lbu	a5,0(a0)$/;"	l
 c2	user/wc.asm	/^  c2:	6aa6                	ld	s5,72(sp)$/;"	l
 c2	user/xargs.asm	/^  c2:	20000513          	li	a0,512$/;"	l
 c2	user/zombie.asm	/^  c2:	1141                	addi	sp,sp,-16$/;"	l
@@ -1557,8 +1559,7 @@ c4	user/pingpong.asm	/^  c4:	87858593          	addi	a1,a1,-1928 # 938 <malloc+0
 c4	user/primes.asm	/^  c4:	6ae2                	ld	s5,24(sp)$/;"	l
 c4	user/sh.asm	/^      c4:	078a                	slli	a5,a5,0x2$/;"	l
 c4	user/sleep.asm	/^  c4:	fff7c703          	lbu	a4,-1(a5)$/;"	l
-c4	user/trace.asm	/^  c4:	0505                	addi	a0,a0,1$/;"	l
-c4	user/tracee.asm	/^  c4:	2505                	addiw	a0,a0,1$/;"	l
+c4	user/sysinfo.asm	/^  c4:	87aa                	mv	a5,a0$/;"	l
 c4	user/usertests.asm	/^      c4:	4581                	li	a1,0$/;"	l
 c4	user/wc.asm	/^  c4:	6b06                	ld	s6,64(sp)$/;"	l
 c4	user/zombie.asm	/^  c4:	e406                	sd	ra,8(sp)$/;"	l
@@ -1606,8 +1607,8 @@ c6	user/primes.asm	/^  c6:	60a6                	ld	ra,72(sp)$/;"	l
 c6	user/rm.asm	/^  c6:	00f71763          	bne	a4,a5,d4 <strcmp+0x20>$/;"	l
 c6	user/sh.asm	/^      c6:	00001717          	auipc	a4,0x1$/;"	l
 c6	user/stressfs.asm	/^  c6:	85650513          	addi	a0,a0,-1962 # 918 <malloc+0x128>$/;"	l
-c6	user/trace.asm	/^  c6:	0585                	addi	a1,a1,1$/;"	l
-c6	user/tracee.asm	/^  c6:	60a2                	ld	ra,8(sp)$/;"	l
+c6	user/sysinfo.asm	/^  c6:	1602                	slli	a2,a2,0x20$/;"	l
+c6	user/trace.asm	/^  c6:	fbe5                	bnez	a5,b6 <strcmp+0xe>$/;"	l
 c6	user/usertests.asm	/^      c6:	00006517          	auipc	a0,0x6$/;"	l
 c6	user/wc.asm	/^  c6:	7be2                	ld	s7,56(sp)$/;"	l
 c6	user/xargs.asm	/^  c6:	00000097          	auipc	ra,0x0$/;"	l
@@ -1660,8 +1661,8 @@ c8	user/ls.asm	/^  c8:	53a080e7          	jalr	1338(ra) # 5fe <open>$/;"	l
 c8	user/pingpong.asm	/^  c8:	fdc42503          	lw	a0,-36(s0)$/;"	l
 c8	user/primes.asm	/^  c8:	6406                	ld	s0,64(sp)$/;"	l
 c8	user/sleep.asm	/^  c8:	ff65                	bnez	a4,c0 <strlen+0x12>$/;"	l
-c8	user/trace.asm	/^  c8:	00054783          	lbu	a5,0(a0)$/;"	l
-c8	user/tracee.asm	/^  c8:	6402                	ld	s0,0(sp)$/;"	l
+c8	user/sysinfo.asm	/^  c8:	9201                	srli	a2,a2,0x20$/;"	l
+c8	user/trace.asm	/^  c8:	0005c503          	lbu	a0,0(a1)$/;"	l
 c8	user/wc.asm	/^  c8:	7c42                	ld	s8,48(sp)$/;"	l
 c8	user/zombie.asm	/^  c8:	0800                	addi	s0,sp,16$/;"	l
 c80	user/grind.asm	/^     c80:	fee78fa3          	sb	a4,-1(a5)$/;"	l
@@ -1713,7 +1714,7 @@ ca	user/rm.asm	/^  ca:	0505                	addi	a0,a0,1$/;"	l
 ca	user/sh.asm	/^      ca:	3b270713          	addi	a4,a4,946 # 1478 <malloc+0x21e>$/;"	l
 ca	user/sleep.asm	/^  ca:	40a6853b          	subw	a0,a3,a0$/;"	l
 ca	user/stressfs.asm	/^  ca:	00000097          	auipc	ra,0x0$/;"	l
-ca	user/tracee.asm	/^  ca:	0141                	addi	sp,sp,16$/;"	l
+ca	user/sysinfo.asm	/^  ca:	00a60733          	add	a4,a2,a0$/;"	l
 ca	user/usertests.asm	/^      ca:	32250513          	addi	a0,a0,802 # 63e8 <malloc+0x156>$/;"	l
 ca	user/wc.asm	/^  ca:	7ca2                	ld	s9,40(sp)$/;"	l
 ca	user/xargs.asm	/^  ca:	7a2080e7          	jalr	1954(ra) # 868 <malloc>$/;"	l
@@ -1782,10 +1783,9 @@ cc	user/rm.asm	/^  cc:	0585                	addi	a1,a1,1$/;"	l
 cc	user/sh.asm	/^    cc = read(0, &c, 1);$/;"	d
 cc	user/sleep.asm	/^    cc = read(0, &c, 1);$/;"	d
 cc	user/stressfs.asm	/^    cc = read(0, &c, 1);$/;"	d
+cc	user/sysinfo.asm	/^    cc = read(0, &c, 1);$/;"	d
 cc	user/trace.asm	/^    cc = read(0, &c, 1);$/;"	d
-cc	user/trace.asm	/^  cc:	fbe5                	bnez	a5,bc <strcmp+0xe>$/;"	l
-cc	user/tracee.asm	/^    cc = read(0, &c, 1);$/;"	d
-cc	user/tracee.asm	/^  cc:	8082                	ret$/;"	l
+cc	user/trace.asm	/^  cc:	40a7853b          	subw	a0,a5,a0$/;"	l
 cc	user/usertests.asm	/^        cc = sizeof(buf);$/;"	d
 cc	user/usertests.asm	/^      cc = cc * 2;$/;"	d
 cc	user/usertests.asm	/^    cc = 1;$/;"	d
@@ -1846,8 +1846,7 @@ ce	user/rm.asm	/^  ce:	00054783          	lbu	a5,0(a0)$/;"	l
 ce	user/sh.asm	/^      ce:	97ba                	add	a5,a5,a4$/;"	l
 ce	user/sleep.asm	/^  ce:	2505                	addiw	a0,a0,1$/;"	l
 ce	user/stressfs.asm	/^  ce:	66a080e7          	jalr	1642(ra) # 734 <printf>$/;"	l
-ce	user/trace.asm	/^  ce:	0005c503          	lbu	a0,0(a1)$/;"	l
-ce	user/tracee.asm	/^  ce:	4501                	li	a0,0$/;"	l
+ce	user/sysinfo.asm	/^  ce:	00b78023          	sb	a1,0(a5)$/;"	l
 ce	user/usertests.asm	/^      ce:	00006097          	auipc	ra,0x6$/;"	l
 ce	user/wc.asm	/^  ce:	6de2                	ld	s11,24(sp)$/;"	l
 ce	user/xargs.asm	/^  ce:	00acb023          	sd	a0,0(s9)$/;"	l
@@ -1932,10 +1931,10 @@ chdir	user/sleep.asm	/^.global chdir$/;"	s
 chdir	user/sleep.asm	/^chdir:$/;"	l
 chdir	user/stressfs.asm	/^.global chdir$/;"	s
 chdir	user/stressfs.asm	/^chdir:$/;"	l
+chdir	user/sysinfo.asm	/^.global chdir$/;"	s
+chdir	user/sysinfo.asm	/^chdir:$/;"	l
 chdir	user/trace.asm	/^.global chdir$/;"	s
 chdir	user/trace.asm	/^chdir:$/;"	l
-chdir	user/tracee.asm	/^.global chdir$/;"	s
-chdir	user/tracee.asm	/^chdir:$/;"	l
 chdir	user/usertests.asm	/^.global chdir$/;"	s
 chdir	user/usertests.asm	/^chdir:$/;"	l
 chdir	user/usys.S	/^.global chdir$/;"	s
@@ -1982,10 +1981,10 @@ close	user/sleep.asm	/^.global close$/;"	s
 close	user/sleep.asm	/^close:$/;"	l
 close	user/stressfs.asm	/^.global close$/;"	s
 close	user/stressfs.asm	/^close:$/;"	l
+close	user/sysinfo.asm	/^.global close$/;"	s
+close	user/sysinfo.asm	/^close:$/;"	l
 close	user/trace.asm	/^.global close$/;"	s
 close	user/trace.asm	/^close:$/;"	l
-close	user/tracee.asm	/^.global close$/;"	s
-close	user/tracee.asm	/^close:$/;"	l
 close	user/usertests.asm	/^.global close$/;"	s
 close	user/usertests.asm	/^close:$/;"	l
 close	user/usys.S	/^.global close$/;"	s
@@ -2055,7 +2054,7 @@ d0	user/pingpong.asm	/^  d0:	346080e7          	jalr	838(ra) # 412 <write>$/;"	l
 d0	user/primes.asm	/^  d0:	8082                	ret$/;"	l
 d0	user/sh.asm	/^      d0:	439c                	lw	a5,0(a5)$/;"	l
 d0	user/sleep.asm	/^  d0:	60a2                	ld	ra,8(sp)$/;"	l
-d0	user/tracee.asm	/^  d0:	bfdd                	j	c6 <strlen+0x22>$/;"	l
+d0	user/trace.asm	/^  d0:	60a2                	ld	ra,8(sp)$/;"	l
 d0	user/wc.asm	/^  d0:	6109                	addi	sp,sp,128$/;"	l
 d0	user/zombie.asm	/^  d0:	9201                	srli	a2,a2,0x20$/;"	l
 d00	user/grind.asm	/^     d00:	00b78023          	sb	a1,0(a5)$/;"	l
@@ -2109,8 +2108,8 @@ d2	user/rm.asm	/^  d2:	fbe5                	bnez	a5,c2 <strcmp+0xe>$/;"	l
 d2	user/sh.asm	/^      d2:	97ba                	add	a5,a5,a4$/;"	l
 d2	user/sleep.asm	/^  d2:	6402                	ld	s0,0(sp)$/;"	l
 d2	user/stressfs.asm	/^  d2:	4581                	li	a1,0$/;"	l
-d2	user/trace.asm	/^  d2:	40a7853b          	subw	a0,a5,a0$/;"	l
-d2	user/tracee.asm	/^  d2:	1141                	addi	sp,sp,-16$/;"	l
+d2	user/sysinfo.asm	/^  d2:	0785                	addi	a5,a5,1$/;"	l
+d2	user/trace.asm	/^  d2:	6402                	ld	s0,0(sp)$/;"	l
 d2	user/usertests.asm	/^      d2:	df2080e7          	jalr	-526(ra) # 5ec0 <open>$/;"	l
 d2	user/wc.asm	/^  d2:	8082                	ret$/;"	l
 d2	user/xargs.asm	/^  d2:	2a85                	addiw	s5,s5,1$/;"	l
@@ -2166,7 +2165,8 @@ d4	user/rm.asm	/^  d4:	0005c503          	lbu	a0,0(a1)$/;"	l
 d4	user/sh.asm	/^      d4:	8782                	jr	a5$/;"	l
 d4	user/sleep.asm	/^  d4:	0141                	addi	sp,sp,16$/;"	l
 d4	user/stressfs.asm	/^  d4:	fc040513          	addi	a0,s0,-64$/;"	l
-d4	user/tracee.asm	/^  d4:	e406                	sd	ra,8(sp)$/;"	l
+d4	user/sysinfo.asm	/^  d4:	fee79de3          	bne	a5,a4,ce <memset+0x14>$/;"	l
+d4	user/trace.asm	/^  d4:	0141                	addi	sp,sp,16$/;"	l
 d4	user/wc.asm	/^  d4:	00001517          	auipc	a0,0x1$/;"	l
 d4	user/xargs.asm	/^  d4:	4174863b          	subw	a2,s1,s7$/;"	l
 d40	user/grind.asm	/^     d40:	eca6                	sd	s1,88(sp)$/;"	l
@@ -2214,8 +2214,7 @@ d6	user/kill.asm	/^  d6:	e022                	sd	s0,0(sp)$/;"	l
 d6	user/ls.asm	/^  d6:	d7840593          	addi	a1,s0,-648$/;"	l
 d6	user/sh.asm	/^      d6:	ec26                	sd	s1,24(sp)$/;"	l
 d6	user/sleep.asm	/^  d6:	8082                	ret$/;"	l
-d6	user/trace.asm	/^  d6:	60a2                	ld	ra,8(sp)$/;"	l
-d6	user/tracee.asm	/^  d6:	e022                	sd	s0,0(sp)$/;"	l
+d6	user/trace.asm	/^  d6:	8082                	ret$/;"	l
 d6	user/usertests.asm	/^      d6:	02055563          	bgez	a0,100 <opentest+0x66>$/;"	l
 d6	user/zombie.asm	/^  d6:	00b78023          	sb	a1,0(a5)$/;"	l
 d60	user/sh.asm	/^     d60:	0017979b          	slliw	a5,a5,0x1$/;"	l
@@ -2262,8 +2261,8 @@ d8	user/rm.asm	/^  d8:	40a7853b          	subw	a0,a5,a0$/;"	l
 d8	user/sh.asm	/^      d8:	4505                	li	a0,1$/;"	l
 d8	user/sleep.asm	/^  d8:	4501                	li	a0,0$/;"	l
 d8	user/stressfs.asm	/^  d8:	00000097          	auipc	ra,0x0$/;"	l
-d8	user/trace.asm	/^  d8:	6402                	ld	s0,0(sp)$/;"	l
-d8	user/tracee.asm	/^  d8:	0800                	addi	s0,sp,16$/;"	l
+d8	user/sysinfo.asm	/^  d8:	60a2                	ld	ra,8(sp)$/;"	l
+d8	user/trace.asm	/^  d8:	1141                	addi	sp,sp,-16$/;"	l
 d8	user/wc.asm	/^  d8:	89c50513          	addi	a0,a0,-1892 # 970 <malloc+0x10c>$/;"	l
 d8	user/xargs.asm	/^  d8:	85de                	mv	a1,s7$/;"	l
 d80	user/sh.asm	/^     d80:	8082                	ret$/;"	l
@@ -2312,8 +2311,8 @@ da	user/ln.asm	/^  da:	0505                	addi	a0,a0,1$/;"	l
 da	user/ls.asm	/^  da:	00000097          	auipc	ra,0x0$/;"	l
 da	user/sh.asm	/^      da:	00001097          	auipc	ra,0x1$/;"	l
 da	user/sleep.asm	/^  da:	bfdd                	j	d0 <strlen+0x22>$/;"	l
-da	user/trace.asm	/^  da:	0141                	addi	sp,sp,16$/;"	l
-da	user/tracee.asm	/^  da:	ca19                	beqz	a2,f0 <memset+0x1e>$/;"	l
+da	user/sysinfo.asm	/^  da:	6402                	ld	s0,0(sp)$/;"	l
+da	user/trace.asm	/^  da:	e406                	sd	ra,8(sp)$/;"	l
 da	user/usertests.asm	/^      da:	60e2                	ld	ra,24(sp)$/;"	l
 da	user/xargs.asm	/^  da:	00000097          	auipc	ra,0x0$/;"	l
 da	user/zombie.asm	/^  da:	0785                	addi	a5,a5,1$/;"	l
@@ -2366,8 +2365,8 @@ dc	user/primes.asm	/^  dc:	4501                	li	a0,0$/;"	l
 dc	user/rm.asm	/^  dc:	60a2                	ld	ra,8(sp)$/;"	l
 dc	user/sleep.asm	/^  dc:	1141                	addi	sp,sp,-16$/;"	l
 dc	user/stressfs.asm	/^  dc:	346080e7          	jalr	838(ra) # 41e <open>$/;"	l
-dc	user/trace.asm	/^  dc:	8082                	ret$/;"	l
-dc	user/tracee.asm	/^  dc:	87aa                	mv	a5,a0$/;"	l
+dc	user/sysinfo.asm	/^  dc:	0141                	addi	sp,sp,16$/;"	l
+dc	user/trace.asm	/^  dc:	e022                	sd	s0,0(sp)$/;"	l
 dc	user/usertests.asm	/^      dc:	6442                	ld	s0,16(sp)$/;"	l
 dc	user/wc.asm	/^  dc:	00000097          	auipc	ra,0x0$/;"	l
 dc	user/zombie.asm	/^  dc:	fee79de3          	bne	a5,a4,d6 <memset+0x14>$/;"	l
@@ -2414,8 +2413,8 @@ de	user/primes.asm	/^  de:	79a2                	ld	s3,40(sp)$/;"	l
 de	user/rm.asm	/^  de:	6402                	ld	s0,0(sp)$/;"	l
 de	user/sh.asm	/^      de:	d6e080e7          	jalr	-658(ra) # e48 <exit>$/;"	l
 de	user/sleep.asm	/^  de:	e406                	sd	ra,8(sp)$/;"	l
-de	user/trace.asm	/^  de:	1141                	addi	sp,sp,-16$/;"	l
-de	user/tracee.asm	/^  de:	1602                	slli	a2,a2,0x20$/;"	l
+de	user/sysinfo.asm	/^  de:	8082                	ret$/;"	l
+de	user/trace.asm	/^  de:	0800                	addi	s0,sp,16$/;"	l
 de	user/usertests.asm	/^      de:	64a2                	ld	s1,8(sp)$/;"	l
 de	user/xargs.asm	/^  de:	354080e7          	jalr	852(ra) # 42e <memcpy>$/;"	l
 de0	user/grind.asm	/^     de0:	85ca                	mv	a1,s2$/;"	l
@@ -2496,8 +2495,8 @@ dst	user/rm.asm	/^  dst = vdst;$/;"	d
 dst	user/sh.asm	/^  dst = vdst;$/;"	d
 dst	user/sleep.asm	/^  dst = vdst;$/;"	d
 dst	user/stressfs.asm	/^  dst = vdst;$/;"	d
+dst	user/sysinfo.asm	/^  dst = vdst;$/;"	d
 dst	user/trace.asm	/^  dst = vdst;$/;"	d
-dst	user/tracee.asm	/^  dst = vdst;$/;"	d
 dst	user/usertests.asm	/^  dst = vdst;$/;"	d
 dst	user/wc.asm	/^  dst = vdst;$/;"	d
 dst	user/xargs.asm	/^  dst = vdst;$/;"	d
@@ -2537,10 +2536,10 @@ dup	user/sleep.asm	/^.global dup$/;"	s
 dup	user/sleep.asm	/^dup:$/;"	l
 dup	user/stressfs.asm	/^.global dup$/;"	s
 dup	user/stressfs.asm	/^dup:$/;"	l
+dup	user/sysinfo.asm	/^.global dup$/;"	s
+dup	user/sysinfo.asm	/^dup:$/;"	l
 dup	user/trace.asm	/^.global dup$/;"	s
 dup	user/trace.asm	/^dup:$/;"	l
-dup	user/tracee.asm	/^.global dup$/;"	s
-dup	user/tracee.asm	/^dup:$/;"	l
 dup	user/usertests.asm	/^.global dup$/;"	s
 dup	user/usertests.asm	/^dup:$/;"	l
 dup	user/usys.S	/^.global dup$/;"	s
@@ -2581,8 +2580,8 @@ e0	user/primes.asm	/^  e0:	7a02                	ld	s4,32(sp)$/;"	l
 e0	user/rm.asm	/^  e0:	0141                	addi	sp,sp,16$/;"	l
 e0	user/sleep.asm	/^  e0:	e022                	sd	s0,0(sp)$/;"	l
 e0	user/stressfs.asm	/^  e0:	892a                	mv	s2,a0$/;"	l
-e0	user/trace.asm	/^  e0:	e406                	sd	ra,8(sp)$/;"	l
-e0	user/tracee.asm	/^  e0:	9201                	srli	a2,a2,0x20$/;"	l
+e0	user/sysinfo.asm	/^  e0:	1141                	addi	sp,sp,-16$/;"	l
+e0	user/trace.asm	/^  e0:	00054783          	lbu	a5,0(a0)$/;"	l
 e0	user/usertests.asm	/^      e0:	6105                	addi	sp,sp,32$/;"	l
 e0	user/wc.asm	/^  e0:	6cc080e7          	jalr	1740(ra) # 7a8 <printf>$/;"	l
 e0	user/zombie.asm	/^  e0:	60a2                	ld	ra,8(sp)$/;"	l
@@ -2634,8 +2633,7 @@ e2	user/rm.asm	/^  e2:	8082                	ret$/;"	l
 e2	user/sh.asm	/^      e2:	00001517          	auipc	a0,0x1$/;"	l
 e2	user/sleep.asm	/^  e2:	0800                	addi	s0,sp,16$/;"	l
 e2	user/stressfs.asm	/^  e2:	44d1                	li	s1,20$/;"	l
-e2	user/trace.asm	/^  e2:	e022                	sd	s0,0(sp)$/;"	l
-e2	user/tracee.asm	/^  e2:	00a60733          	add	a4,a2,a0$/;"	l
+e2	user/sysinfo.asm	/^  e2:	e406                	sd	ra,8(sp)$/;"	l
 e2	user/usertests.asm	/^      e2:	8082                	ret$/;"	l
 e2	user/xargs.asm	/^  e2:	0ca1                	addi	s9,s9,8$/;"	l
 e2	user/zombie.asm	/^  e2:	6402                	ld	s0,0(sp)$/;"	l
@@ -2682,7 +2680,8 @@ e4	user/primes.asm	/^  e4:	b7cd                	j	c6 <pipeline+0xc6>$/;"	l
 e4	user/rm.asm	/^  e4:	1141                	addi	sp,sp,-16$/;"	l
 e4	user/sleep.asm	/^  e4:	ca19                	beqz	a2,fa <memset+0x1e>$/;"	l
 e4	user/stressfs.asm	/^  e4:	dc040a13          	addi	s4,s0,-576$/;"	l
-e4	user/trace.asm	/^  e4:	0800                	addi	s0,sp,16$/;"	l
+e4	user/sysinfo.asm	/^  e4:	e022                	sd	s0,0(sp)$/;"	l
+e4	user/trace.asm	/^  e4:	cf99                	beqz	a5,102 <strlen+0x2a>$/;"	l
 e4	user/usertests.asm	/^      e4:	85a6                	mv	a1,s1$/;"	l
 e4	user/wc.asm	/^  e4:	4505                	li	a0,1$/;"	l
 e4	user/xargs.asm	/^  e4:	8ba6                	mv	s7,s1$/;"	l
@@ -2734,8 +2733,8 @@ e6	user/primes.asm	/^  e6:	7139                	addi	sp,sp,-64$/;"	l
 e6	user/rm.asm	/^  e6:	e406                	sd	ra,8(sp)$/;"	l
 e6	user/sh.asm	/^      e6:	29e50513          	addi	a0,a0,670 # 1380 <malloc+0x126>$/;"	l
 e6	user/sleep.asm	/^  e6:	87aa                	mv	a5,a0$/;"	l
-e6	user/trace.asm	/^  e6:	00054783          	lbu	a5,0(a0)$/;"	l
-e6	user/tracee.asm	/^  e6:	00b78023          	sb	a1,0(a5)$/;"	l
+e6	user/sysinfo.asm	/^  e6:	0800                	addi	s0,sp,16$/;"	l
+e6	user/trace.asm	/^  e6:	0505                	addi	a0,a0,1$/;"	l
 e6	user/usertests.asm	/^      e6:	00006517          	auipc	a0,0x6$/;"	l
 e6	user/wc.asm	/^  e6:	00000097          	auipc	ra,0x0$/;"	l
 e6	user/xargs.asm	/^  e6:	b775                	j	92 <main+0x92>$/;"	l
@@ -2784,6 +2783,8 @@ e8	user/primes.asm	/^  e8:	fc06                	sd	ra,56(sp)$/;"	l
 e8	user/rm.asm	/^  e8:	e022                	sd	s0,0(sp)$/;"	l
 e8	user/sleep.asm	/^  e8:	1602                	slli	a2,a2,0x20$/;"	l
 e8	user/stressfs.asm	/^  e8:	20000993          	li	s3,512$/;"	l
+e8	user/sysinfo.asm	/^  e8:	00054783          	lbu	a5,0(a0)$/;"	l
+e8	user/trace.asm	/^  e8:	87aa                	mv	a5,a0$/;"	l
 e8	user/xargs.asm	/^  e8:	fff48913          	addi	s2,s1,-1$/;"	l
 e8	user/zombie.asm	/^  e8:	1141                	addi	sp,sp,-16$/;"	l
 e80	user/grind.asm	/^     e80:	6402                	ld	s0,0(sp)$/;"	l
@@ -2835,8 +2836,7 @@ ea	user/primes.asm	/^  ea:	f822                	sd	s0,48(sp)$/;"	l
 ea	user/rm.asm	/^  ea:	0800                	addi	s0,sp,16$/;"	l
 ea	user/sh.asm	/^      ea:	00000097          	auipc	ra,0x0$/;"	l
 ea	user/sleep.asm	/^  ea:	9201                	srli	a2,a2,0x20$/;"	l
-ea	user/trace.asm	/^  ea:	cf99                	beqz	a5,108 <strlen+0x2a>$/;"	l
-ea	user/tracee.asm	/^  ea:	0785                	addi	a5,a5,1$/;"	l
+ea	user/trace.asm	/^  ea:	86be                	mv	a3,a5$/;"	l
 ea	user/usertests.asm	/^      ea:	2ea50513          	addi	a0,a0,746 # 63d0 <malloc+0x13e>$/;"	l
 ea	user/wc.asm	/^  ea:	36c080e7          	jalr	876(ra) # 452 <exit>$/;"	l
 ea	user/zombie.asm	/^  ea:	e406                	sd	ra,8(sp)$/;"	l
@@ -2886,8 +2886,8 @@ ec	user/primes.asm	/^  ec:	0080                	addi	s0,sp,64$/;"	l
 ec	user/rm.asm	/^  ec:	00054783          	lbu	a5,0(a0)$/;"	l
 ec	user/sleep.asm	/^  ec:	00a60733          	add	a4,a2,a0$/;"	l
 ec	user/stressfs.asm	/^  ec:	864e                	mv	a2,s3$/;"	l
-ec	user/trace.asm	/^  ec:	0505                	addi	a0,a0,1$/;"	l
-ec	user/tracee.asm	/^  ec:	fee79de3          	bne	a5,a4,e6 <memset+0x14>$/;"	l
+ec	user/sysinfo.asm	/^  ec:	cf81                	beqz	a5,104 <strchr+0x24>$/;"	l
+ec	user/trace.asm	/^  ec:	0785                	addi	a5,a5,1$/;"	l
 ec	user/xargs.asm	/^  ec:	fe048fa3          	sb	zero,-1(s1)$/;"	l
 ec	user/zombie.asm	/^  ec:	e022                	sd	s0,0(sp)$/;"	l
 ec0	user/grind.asm	/^     ec0:	9281                	srli	a3,a3,0x20$/;"	l
@@ -2934,7 +2934,8 @@ ee	user/pingpong.asm	/^  ee:	4605                	li	a2,1$/;"	l
 ee	user/primes.asm	/^  ee:	fc840513          	addi	a0,s0,-56$/;"	l
 ee	user/sh.asm	/^      ee:	f6c080e7          	jalr	-148(ra) # 56 <panic>$/;"	l
 ee	user/stressfs.asm	/^  ee:	85d2                	mv	a1,s4$/;"	l
-ee	user/trace.asm	/^  ee:	87aa                	mv	a5,a0$/;"	l
+ee	user/sysinfo.asm	/^  ee:	00f58763          	beq	a1,a5,fc <strchr+0x1c>$/;"	l
+ee	user/trace.asm	/^  ee:	fff7c703          	lbu	a4,-1(a5)$/;"	l
 ee	user/usertests.asm	/^      ee:	00006097          	auipc	ra,0x6$/;"	l
 ee	user/wc.asm	/^  ee:	7179                	addi	sp,sp,-48$/;"	l
 ee	user/zombie.asm	/^  ee:	0800                	addi	s0,sp,16$/;"	l
@@ -3025,10 +3026,10 @@ exec	user/sleep.asm	/^.global exec$/;"	s
 exec	user/sleep.asm	/^exec:$/;"	l
 exec	user/stressfs.asm	/^.global exec$/;"	s
 exec	user/stressfs.asm	/^exec:$/;"	l
+exec	user/sysinfo.asm	/^.global exec$/;"	s
+exec	user/sysinfo.asm	/^exec:$/;"	l
 exec	user/trace.asm	/^.global exec$/;"	s
 exec	user/trace.asm	/^exec:$/;"	l
-exec	user/tracee.asm	/^.global exec$/;"	s
-exec	user/tracee.asm	/^exec:$/;"	l
 exec	user/usertests.asm	/^.global exec$/;"	s
 exec	user/usertests.asm	/^exec:$/;"	l
 exec	user/usys.S	/^.global exec$/;"	s
@@ -3080,10 +3081,10 @@ exit	user/sleep.asm	/^.global exit$/;"	s
 exit	user/sleep.asm	/^exit:$/;"	l
 exit	user/stressfs.asm	/^.global exit$/;"	s
 exit	user/stressfs.asm	/^exit:$/;"	l
+exit	user/sysinfo.asm	/^.global exit$/;"	s
+exit	user/sysinfo.asm	/^exit:$/;"	l
 exit	user/trace.asm	/^.global exit$/;"	s
 exit	user/trace.asm	/^exit:$/;"	l
-exit	user/tracee.asm	/^.global exit$/;"	s
-exit	user/tracee.asm	/^exit:$/;"	l
 exit	user/usertests.asm	/^.global exit$/;"	s
 exit	user/usertests.asm	/^exit:$/;"	l
 exit	user/usys.S	/^.global exit$/;"	s
@@ -3111,8 +3112,6 @@ f0	user/pingpong.asm	/^  f0:	85a6                	mv	a1,s1$/;"	l
 f0	user/rm.asm	/^  f0:	cf99                	beqz	a5,10e <strlen+0x2a>$/;"	l
 f0	user/sleep.asm	/^  f0:	00b78023          	sb	a1,0(a5)$/;"	l
 f0	user/stressfs.asm	/^  f0:	854a                	mv	a0,s2$/;"	l
-f0	user/trace.asm	/^  f0:	86be                	mv	a3,a5$/;"	l
-f0	user/tracee.asm	/^  f0:	60a2                	ld	ra,8(sp)$/;"	l
 f0	user/wc.asm	/^  f0:	f406                	sd	ra,40(sp)$/;"	l
 f0	user/xargs.asm	/^  f0:	0a8e                	slli	s5,s5,0x3$/;"	l
 f0	user/zombie.asm	/^  f0:	00054783          	lbu	a5,0(a0)$/;"	l
@@ -3164,8 +3163,8 @@ f2	user/primes.asm	/^  f2:	00000097          	auipc	ra,0x0$/;"	l
 f2	user/rm.asm	/^  f2:	0505                	addi	a0,a0,1$/;"	l
 f2	user/sh.asm	/^      f2:	6508                	ld	a0,8(a0)$/;"	l
 f2	user/stressfs.asm	/^  f2:	00000097          	auipc	ra,0x0$/;"	l
-f2	user/trace.asm	/^  f2:	0785                	addi	a5,a5,1$/;"	l
-f2	user/tracee.asm	/^  f2:	6402                	ld	s0,0(sp)$/;"	l
+f2	user/sysinfo.asm	/^  f2:	0505                	addi	a0,a0,1$/;"	l
+f2	user/trace.asm	/^  f2:	ff65                	bnez	a4,ea <strlen+0x12>$/;"	l
 f2	user/usertests.asm	/^      f2:	0e8080e7          	jalr	232(ra) # 61d6 <printf>$/;"	l
 f2	user/wc.asm	/^  f2:	f022                	sd	s0,32(sp)$/;"	l
 f2	user/xargs.asm	/^  f2:	9ada                	add	s5,s5,s6$/;"	l
@@ -3215,8 +3214,8 @@ f4	user/mkdir.asm	/^  f4:	87aa                	mv	a5,a0$/;"	l
 f4	user/rm.asm	/^  f4:	87aa                	mv	a5,a0$/;"	l
 f4	user/sh.asm	/^      f4:	c515                	beqz	a0,120 <runcmd+0x76>$/;"	l
 f4	user/sleep.asm	/^  f4:	0785                	addi	a5,a5,1$/;"	l
-f4	user/trace.asm	/^  f4:	fff7c703          	lbu	a4,-1(a5)$/;"	l
-f4	user/tracee.asm	/^  f4:	0141                	addi	sp,sp,16$/;"	l
+f4	user/sysinfo.asm	/^  f4:	00054783          	lbu	a5,0(a0)$/;"	l
+f4	user/trace.asm	/^  f4:	40a6853b          	subw	a0,a3,a0$/;"	l
 f4	user/wc.asm	/^  f4:	1800                	addi	s0,sp,48$/;"	l
 f4	user/xargs.asm	/^  f4:	20000513          	li	a0,512$/;"	l
 f4	user/zombie.asm	/^  f4:	cf81                	beqz	a5,10c <strchr+0x24>$/;"	l
@@ -3269,7 +3268,6 @@ f6	user/rm.asm	/^  f6:	86be                	mv	a3,a5$/;"	l
 f6	user/sh.asm	/^      f6:	00848593          	addi	a1,s1,8$/;"	l
 f6	user/sleep.asm	/^  f6:	fee79de3          	bne	a5,a4,f0 <memset+0x14>$/;"	l
 f6	user/stressfs.asm	/^  f6:	304080e7          	jalr	772(ra) # 3f6 <read>$/;"	l
-f6	user/tracee.asm	/^  f6:	8082                	ret$/;"	l
 f6	user/usertests.asm	/^      f6:	4505                	li	a0,1$/;"	l
 f6	user/wc.asm	/^  f6:	4785                	li	a5,1$/;"	l
 f6	user/zombie.asm	/^  f6:	00f58763          	beq	a1,a5,104 <strchr+0x1c>$/;"	l
@@ -3313,8 +3311,8 @@ f8	user/kill.asm	/^  f8:	0141                	addi	sp,sp,16$/;"	l
 f8	user/ln.asm	/^  f8:	bfdd                	j	ee <strlen+0x22>$/;"	l
 f8	user/mkdir.asm	/^  f8:	0785                	addi	a5,a5,1$/;"	l
 f8	user/rm.asm	/^  f8:	0785                	addi	a5,a5,1$/;"	l
-f8	user/trace.asm	/^  f8:	ff65                	bnez	a4,f0 <strlen+0x12>$/;"	l
-f8	user/tracee.asm	/^  f8:	1141                	addi	sp,sp,-16$/;"	l
+f8	user/sysinfo.asm	/^  f8:	fbfd                	bnez	a5,ee <strchr+0xe>$/;"	l
+f8	user/trace.asm	/^  f8:	2505                	addiw	a0,a0,1$/;"	l
 f8	user/usertests.asm	/^      f8:	00006097          	auipc	ra,0x6$/;"	l
 f8	user/wc.asm	/^  f8:	04a7dc63          	bge	a5,a0,150 <main+0x62>$/;"	l
 f8	user/xargs.asm	/^  f8:	00000097          	auipc	ra,0x0$/;"	l
@@ -3367,8 +3365,8 @@ fa	user/rm.asm	/^  fa:	fff7c703          	lbu	a4,-1(a5)$/;"	l
 fa	user/sh.asm	/^      fa:	00001097          	auipc	ra,0x1$/;"	l
 fa	user/sleep.asm	/^  fa:	60a2                	ld	ra,8(sp)$/;"	l
 fa	user/stressfs.asm	/^  fa:	34fd                	addiw	s1,s1,-1$/;"	l
-fa	user/trace.asm	/^  fa:	40a6853b          	subw	a0,a3,a0$/;"	l
-fa	user/tracee.asm	/^  fa:	e406                	sd	ra,8(sp)$/;"	l
+fa	user/sysinfo.asm	/^  fa:	4501                	li	a0,0$/;"	l
+fa	user/trace.asm	/^  fa:	60a2                	ld	ra,8(sp)$/;"	l
 fa	user/zombie.asm	/^  fa:	0505                	addi	a0,a0,1$/;"	l
 fa0	user/grind.asm	/^     fa0:	00000073          	ecall$/;"	l
 fa0	user/sh.asm	/^     fa0:	4e05                	li	t3,1$/;"	l
@@ -3418,7 +3416,8 @@ fc	user/ln.asm	/^  fc:	e406                	sd	ra,8(sp)$/;"	l
 fc	user/ls.asm	/^  fc:	00000097          	auipc	ra,0x0$/;"	l
 fc	user/sleep.asm	/^  fc:	6402                	ld	s0,0(sp)$/;"	l
 fc	user/stressfs.asm	/^  fc:	f8e5                	bnez	s1,ec <main+0xec>$/;"	l
-fc	user/tracee.asm	/^  fc:	e022                	sd	s0,0(sp)$/;"	l
+fc	user/sysinfo.asm	/^  fc:	60a2                	ld	ra,8(sp)$/;"	l
+fc	user/trace.asm	/^  fc:	6402                	ld	s0,0(sp)$/;"	l
 fc	user/usertests.asm	/^      fc:	d88080e7          	jalr	-632(ra) # 5e80 <exit>$/;"	l
 fc	user/wc.asm	/^  fc:	ec26                	sd	s1,24(sp)$/;"	l
 fc	user/xargs.asm	/^  fc:	770080e7          	jalr	1904(ra) # 868 <malloc>$/;"	l
@@ -3460,8 +3459,8 @@ fd	user/sleep.asm	/^  fd = open(n, O_RDONLY);$/;"	d
 fd	user/stressfs.asm	/^  fd = open(n, O_RDONLY);$/;"	d
 fd	user/stressfs.asm	/^  fd = open(path, O_CREATE | O_RDWR);$/;"	d
 fd	user/stressfs.asm	/^  fd = open(path, O_RDONLY);$/;"	d
+fd	user/sysinfo.asm	/^  fd = open(n, O_RDONLY);$/;"	d
 fd	user/trace.asm	/^  fd = open(n, O_RDONLY);$/;"	d
-fd	user/tracee.asm	/^  fd = open(n, O_RDONLY);$/;"	d
 fd	user/usertests.asm	/^        fd = open(name, O_CREATE | O_RDWR);$/;"	d
 fd	user/usertests.asm	/^      fd = open("truncfile", O_RDONLY);$/;"	d
 fd	user/usertests.asm	/^      fd = open(file, O_CREATE | O_RDWR);$/;"	d
@@ -3547,8 +3546,8 @@ fe	user/rm.asm	/^  fe:	ff65                	bnez	a4,f6 <strlen+0x12>$/;"	l
 fe	user/sh.asm	/^      fe:	d86080e7          	jalr	-634(ra) # e80 <exec>$/;"	l
 fe	user/sleep.asm	/^  fe:	0141                	addi	sp,sp,16$/;"	l
 fe	user/stressfs.asm	/^  fe:	854a                	mv	a0,s2$/;"	l
-fe	user/trace.asm	/^  fe:	2505                	addiw	a0,a0,1$/;"	l
-fe	user/tracee.asm	/^  fe:	0800                	addi	s0,sp,16$/;"	l
+fe	user/sysinfo.asm	/^  fe:	6402                	ld	s0,0(sp)$/;"	l
+fe	user/trace.asm	/^  fe:	0141                	addi	sp,sp,16$/;"	l
 fe	user/wc.asm	/^  fe:	e84a                	sd	s2,16(sp)$/;"	l
 fe0	user/grind.asm	/^     fe0:	f04a                	sd	s2,32(sp)$/;"	l
 fe0	user/sh.asm	/^     fe0:	a019                	j	fe6 <vprintf+0x42>$/;"	l
@@ -3642,10 +3641,10 @@ fork	user/sleep.asm	/^.global fork$/;"	s
 fork	user/sleep.asm	/^fork:$/;"	l
 fork	user/stressfs.asm	/^.global fork$/;"	s
 fork	user/stressfs.asm	/^fork:$/;"	l
+fork	user/sysinfo.asm	/^.global fork$/;"	s
+fork	user/sysinfo.asm	/^fork:$/;"	l
 fork	user/trace.asm	/^.global fork$/;"	s
 fork	user/trace.asm	/^fork:$/;"	l
-fork	user/tracee.asm	/^.global fork$/;"	s
-fork	user/tracee.asm	/^fork:$/;"	l
 fork	user/usertests.asm	/^.global fork$/;"	s
 fork	user/usertests.asm	/^fork:$/;"	l
 fork	user/usys.S	/^.global fork$/;"	s
@@ -3671,7 +3670,8 @@ free_chain	kernel/virtio_disk.c	/^free_chain(int i)$/;"	f	typeref:typename:void	
 free_desc	kernel/virtio_disk.c	/^free_desc(int i)$/;"	f	typeref:typename:void	file:
 freeblock	mkfs/mkfs.c	/^uint freeblock;$/;"	v	typeref:typename:uint
 freeinode	mkfs/mkfs.c	/^uint freeinode = 1;$/;"	v	typeref:typename:uint
-freelist	kernel/kalloc.c	/^  struct run *freelist;$/;"	m	struct:__anon3c3fa87c0108	typeref:struct:run *	file:
+freelist	kernel/kalloc.c	/^    struct run *freelist;$/;"	m	struct:__anon3c3fa87c0108	typeref:struct:run *	file:
+freemem	kernel/kalloc.c	/^int freemem(){$/;"	f	typeref:typename:int
 freep	user/cat.asm	/^      freep = prevp;$/;"	d
 freep	user/cat.asm	/^  freep = p;$/;"	d
 freep	user/echo.asm	/^      freep = prevp;$/;"	d
@@ -3704,10 +3704,10 @@ freep	user/sleep.asm	/^      freep = prevp;$/;"	d
 freep	user/sleep.asm	/^  freep = p;$/;"	d
 freep	user/stressfs.asm	/^      freep = prevp;$/;"	d
 freep	user/stressfs.asm	/^  freep = p;$/;"	d
+freep	user/sysinfo.asm	/^      freep = prevp;$/;"	d
+freep	user/sysinfo.asm	/^  freep = p;$/;"	d
 freep	user/trace.asm	/^      freep = prevp;$/;"	d
 freep	user/trace.asm	/^  freep = p;$/;"	d
-freep	user/tracee.asm	/^      freep = prevp;$/;"	d
-freep	user/tracee.asm	/^  freep = p;$/;"	d
 freep	user/umalloc.c	/^static Header *freep;$/;"	v	typeref:typename:Header *	file:
 freep	user/usertests.asm	/^      freep = prevp;$/;"	d
 freep	user/usertests.asm	/^  freep = p;$/;"	d
@@ -3758,10 +3758,10 @@ fstat	user/sleep.asm	/^.global fstat$/;"	s
 fstat	user/sleep.asm	/^fstat:$/;"	l
 fstat	user/stressfs.asm	/^.global fstat$/;"	s
 fstat	user/stressfs.asm	/^fstat:$/;"	l
+fstat	user/sysinfo.asm	/^.global fstat$/;"	s
+fstat	user/sysinfo.asm	/^fstat:$/;"	l
 fstat	user/trace.asm	/^.global fstat$/;"	s
 fstat	user/trace.asm	/^fstat:$/;"	l
-fstat	user/tracee.asm	/^.global fstat$/;"	s
-fstat	user/tracee.asm	/^fstat:$/;"	l
 fstat	user/usertests.asm	/^.global fstat$/;"	s
 fstat	user/usertests.asm	/^fstat:$/;"	l
 fstat	user/usys.S	/^.global fstat$/;"	s
@@ -3808,10 +3808,10 @@ getpid	user/sleep.asm	/^.global getpid$/;"	s
 getpid	user/sleep.asm	/^getpid:$/;"	l
 getpid	user/stressfs.asm	/^.global getpid$/;"	s
 getpid	user/stressfs.asm	/^getpid:$/;"	l
+getpid	user/sysinfo.asm	/^.global getpid$/;"	s
+getpid	user/sysinfo.asm	/^getpid:$/;"	l
 getpid	user/trace.asm	/^.global getpid$/;"	s
 getpid	user/trace.asm	/^getpid:$/;"	l
-getpid	user/tracee.asm	/^.global getpid$/;"	s
-getpid	user/tracee.asm	/^getpid:$/;"	l
 getpid	user/usertests.asm	/^.global getpid$/;"	s
 getpid	user/usertests.asm	/^getpid:$/;"	l
 getpid	user/usys.S	/^.global getpid$/;"	s
@@ -3852,13 +3852,14 @@ i	user/rm.asm	/^  i = 0;$/;"	d
 i	user/sh.asm	/^  i = 0;$/;"	d
 i	user/sleep.asm	/^  i = 0;$/;"	d
 i	user/stressfs.asm	/^  i = 0;$/;"	d
+i	user/sysinfo.asm	/^  i = 0;$/;"	d
 i	user/trace.asm	/^  i = 0;$/;"	d
-i	user/tracee.asm	/^  i = 0;$/;"	d
 i	user/usertests.asm	/^      i = de.name[1] - '0';$/;"	d
 i	user/usertests.asm	/^    i = read(fd, buf, BSIZE);$/;"	d
 i	user/usertests.asm	/^  i = 0;$/;"	d
 i	user/usertests.asm	/^  i = read(fd, buf, N*SZ*2);$/;"	d
 i	user/wc.asm	/^  i = 0;$/;"	d
+i	user/xargs.asm	/^    i = 0;$/;"	d
 i	user/xargs.asm	/^  i = 0;$/;"	d
 i	user/zombie.asm	/^  i = 0;$/;"	d
 ialloc	kernel/fs.c	/^ialloc(uint dev, short type)$/;"	f	typeref:struct:inode *
@@ -3909,8 +3910,10 @@ int	user/rm.asm	/^int$/;"	l
 int	user/sh.asm	/^int$/;"	l
 int	user/sleep.asm	/^int$/;"	l
 int	user/stressfs.asm	/^int$/;"	l
+int	user/sysinfo.asm	/^int main(int argc, char *argv[])$/;"	l
+int	user/sysinfo.asm	/^int$/;"	l
+int	user/trace.asm	/^int main(int argc, char *argv[])$/;"	l
 int	user/trace.asm	/^int$/;"	l
-int	user/tracee.asm	/^int$/;"	l
 int	user/usertests.asm	/^int$/;"	l
 int	user/wc.asm	/^int$/;"	l
 int	user/xargs.asm	/^int$/;"	l
@@ -3992,10 +3995,10 @@ kill	user/sleep.asm	/^.global kill$/;"	s
 kill	user/sleep.asm	/^kill:$/;"	l
 kill	user/stressfs.asm	/^.global kill$/;"	s
 kill	user/stressfs.asm	/^kill:$/;"	l
+kill	user/sysinfo.asm	/^.global kill$/;"	s
+kill	user/sysinfo.asm	/^kill:$/;"	l
 kill	user/trace.asm	/^.global kill$/;"	s
 kill	user/trace.asm	/^kill:$/;"	l
-kill	user/tracee.asm	/^.global kill$/;"	s
-kill	user/tracee.asm	/^kill:$/;"	l
 kill	user/usertests.asm	/^.global kill$/;"	s
 kill	user/usertests.asm	/^kill:$/;"	l
 kill	user/usys.S	/^.global kill$/;"	s
@@ -4060,10 +4063,10 @@ link	user/sleep.asm	/^.global link$/;"	s
 link	user/sleep.asm	/^link:$/;"	l
 link	user/stressfs.asm	/^.global link$/;"	s
 link	user/stressfs.asm	/^link:$/;"	l
+link	user/sysinfo.asm	/^.global link$/;"	s
+link	user/sysinfo.asm	/^link:$/;"	l
 link	user/trace.asm	/^.global link$/;"	s
 link	user/trace.asm	/^link:$/;"	l
-link	user/tracee.asm	/^.global link$/;"	s
-link	user/tracee.asm	/^link:$/;"	l
 link	user/usertests.asm	/^.global link$/;"	s
 link	user/usertests.asm	/^link:$/;"	l
 link	user/usys.S	/^.global link$/;"	s
@@ -4087,7 +4090,7 @@ lock	kernel/console.c	/^  struct spinlock lock;$/;"	m	struct:__anonb6393d190108	
 lock	kernel/file.c	/^  struct spinlock lock;$/;"	m	struct:__anonc1f1ee260108	typeref:struct:spinlock	file:
 lock	kernel/file.h	/^  struct sleeplock lock; \/\/ protects everything below here$/;"	m	struct:inode	typeref:struct:sleeplock
 lock	kernel/fs.c	/^  struct spinlock lock;$/;"	m	struct:__anon033c111f0108	typeref:struct:spinlock	file:
-lock	kernel/kalloc.c	/^  struct spinlock lock;$/;"	m	struct:__anon3c3fa87c0108	typeref:struct:spinlock	file:
+lock	kernel/kalloc.c	/^    struct spinlock lock;$/;"	m	struct:__anon3c3fa87c0108	typeref:struct:spinlock	file:
 lock	kernel/log.c	/^  struct spinlock lock;$/;"	m	struct:log	typeref:struct:spinlock	file:
 lock	kernel/pipe.c	/^  struct spinlock lock;$/;"	m	struct:pipe	typeref:struct:spinlock	file:
 lock	kernel/printf.c	/^  struct spinlock lock;$/;"	m	struct:__anonef4e5b790108	typeref:struct:spinlock	file:
@@ -4132,7 +4135,8 @@ main	user/rm.c	/^main(int argc, char *argv[])$/;"	f	typeref:typename:int
 main	user/sh.c	/^main(void)$/;"	f	typeref:typename:int
 main	user/sleep.c	/^main(int argc, char *argv[])$/;"	f	typeref:typename:int
 main	user/stressfs.c	/^main(int argc, char *argv[])$/;"	f	typeref:typename:int
-main	user/trace.c	/^main(int argc, char *argv[])$/;"	f	typeref:typename:int
+main	user/sysinfo.c	/^int main(int argc, char *argv[])$/;"	f	typeref:typename:int
+main	user/trace.c	/^int main(int argc, char *argv[])$/;"	f	typeref:typename:int
 main	user/usertests.c	/^main(int argc, char *argv[])$/;"	f	typeref:typename:int
 main	user/wc.c	/^main(int argc, char *argv[])$/;"	f	typeref:typename:int
 main	user/xargs.c	/^main(int argc, char *argv[])$/;"	f	typeref:typename:int
@@ -4199,10 +4203,10 @@ mkdir	user/sleep.asm	/^.global mkdir$/;"	s
 mkdir	user/sleep.asm	/^mkdir:$/;"	l
 mkdir	user/stressfs.asm	/^.global mkdir$/;"	s
 mkdir	user/stressfs.asm	/^mkdir:$/;"	l
+mkdir	user/sysinfo.asm	/^.global mkdir$/;"	s
+mkdir	user/sysinfo.asm	/^mkdir:$/;"	l
 mkdir	user/trace.asm	/^.global mkdir$/;"	s
 mkdir	user/trace.asm	/^mkdir:$/;"	l
-mkdir	user/tracee.asm	/^.global mkdir$/;"	s
-mkdir	user/tracee.asm	/^mkdir:$/;"	l
 mkdir	user/usertests.asm	/^.global mkdir$/;"	s
 mkdir	user/usertests.asm	/^mkdir:$/;"	l
 mkdir	user/usys.S	/^.global mkdir$/;"	s
@@ -4248,10 +4252,10 @@ mknod	user/sleep.asm	/^.global mknod$/;"	s
 mknod	user/sleep.asm	/^mknod:$/;"	l
 mknod	user/stressfs.asm	/^.global mknod$/;"	s
 mknod	user/stressfs.asm	/^mknod:$/;"	l
+mknod	user/sysinfo.asm	/^.global mknod$/;"	s
+mknod	user/sysinfo.asm	/^mknod:$/;"	l
 mknod	user/trace.asm	/^.global mknod$/;"	s
 mknod	user/trace.asm	/^mknod:$/;"	l
-mknod	user/tracee.asm	/^.global mknod$/;"	s
-mknod	user/tracee.asm	/^mknod:$/;"	l
 mknod	user/usertests.asm	/^.global mknod$/;"	s
 mknod	user/usertests.asm	/^mknod:$/;"	l
 mknod	user/usys.S	/^.global mknod$/;"	s
@@ -4308,10 +4312,10 @@ n	user/sleep.asm	/^    n = n*10 + *s++ - '0';$/;"	d
 n	user/sleep.asm	/^  n = 0;$/;"	d
 n	user/stressfs.asm	/^    n = n*10 + *s++ - '0';$/;"	d
 n	user/stressfs.asm	/^  n = 0;$/;"	d
+n	user/sysinfo.asm	/^    n = n*10 + *s++ - '0';$/;"	d
+n	user/sysinfo.asm	/^  n = 0;$/;"	d
 n	user/trace.asm	/^    n = n*10 + *s++ - '0';$/;"	d
 n	user/trace.asm	/^  n = 0;$/;"	d
-n	user/tracee.asm	/^    n = n*10 + *s++ - '0';$/;"	d
-n	user/tracee.asm	/^  n = 0;$/;"	d
 n	user/usertests.asm	/^    n = n*10 + *s++ - '0';$/;"	d
 n	user/usertests.asm	/^    n = read(fds[0], (void*)addr, 8192);$/;"	d
 n	user/usertests.asm	/^    n = write(1, (char*)addr, 8192);$/;"	d
@@ -4374,10 +4378,10 @@ neg	user/sleep.asm	/^    neg = 1;$/;"	d
 neg	user/sleep.asm	/^  neg = 0;$/;"	d
 neg	user/stressfs.asm	/^    neg = 1;$/;"	d
 neg	user/stressfs.asm	/^  neg = 0;$/;"	d
+neg	user/sysinfo.asm	/^    neg = 1;$/;"	d
+neg	user/sysinfo.asm	/^  neg = 0;$/;"	d
 neg	user/trace.asm	/^    neg = 1;$/;"	d
 neg	user/trace.asm	/^  neg = 0;$/;"	d
-neg	user/tracee.asm	/^    neg = 1;$/;"	d
-neg	user/tracee.asm	/^  neg = 0;$/;"	d
 neg	user/usertests.asm	/^    neg = 1;$/;"	d
 neg	user/usertests.asm	/^  neg = 0;$/;"	d
 neg	user/wc.asm	/^    neg = 1;$/;"	d
@@ -4387,7 +4391,7 @@ neg	user/xargs.asm	/^  neg = 0;$/;"	d
 neg	user/zombie.asm	/^    neg = 1;$/;"	d
 neg	user/zombie.asm	/^  neg = 0;$/;"	d
 next	kernel/buf.h	/^  struct buf *next;$/;"	m	struct:buf	typeref:struct:buf *
-next	kernel/kalloc.c	/^  struct run *next;$/;"	m	struct:run	typeref:struct:run *	file:
+next	kernel/kalloc.c	/^    struct run *next;$/;"	m	struct:run	typeref:struct:run *	file:
 next	kernel/virtio.h	/^  uint16 next;$/;"	m	struct:virtq_desc	typeref:typename:uint16
 nextpid	kernel/kernel.asm	/^  nextpid = nextpid + 1;$/;"	d
 nextpid	kernel/proc.c	/^int nextpid = 1;$/;"	v	typeref:typename:int
@@ -4402,7 +4406,7 @@ nmeta	mkfs/mkfs.c	/^int nmeta;    \/\/ Number of meta blocks (boot, sb, nlog, in
 noff	kernel/proc.h	/^  int noff;                   \/\/ Depth of push_off() nesting.$/;"	m	struct:cpu	typeref:typename:int
 nread	kernel/pipe.c	/^  uint nread;     \/\/ number of bytes read$/;"	m	struct:pipe	typeref:typename:uint	file:
 nulterminate	user/sh.c	/^nulterminate(struct cmd *cmd)$/;"	f	typeref:struct:cmd *
-num	kernel/kernel.asm	/^  num = p->trapframe->a7;$/;"	d
+num	kernel/kernel.asm	/^    num = p->trapframe->a7;$/;"	d
 nunits	user/cat.asm	/^  nunits = (nbytes + sizeof(Header) - 1)\/sizeof(Header) + 1;$/;"	d
 nunits	user/echo.asm	/^  nunits = (nbytes + sizeof(Header) - 1)\/sizeof(Header) + 1;$/;"	d
 nunits	user/find.asm	/^  nunits = (nbytes + sizeof(Header) - 1)\/sizeof(Header) + 1;$/;"	d
@@ -4419,8 +4423,8 @@ nunits	user/rm.asm	/^  nunits = (nbytes + sizeof(Header) - 1)\/sizeof(Header) + 
 nunits	user/sh.asm	/^  nunits = (nbytes + sizeof(Header) - 1)\/sizeof(Header) + 1;$/;"	d
 nunits	user/sleep.asm	/^  nunits = (nbytes + sizeof(Header) - 1)\/sizeof(Header) + 1;$/;"	d
 nunits	user/stressfs.asm	/^  nunits = (nbytes + sizeof(Header) - 1)\/sizeof(Header) + 1;$/;"	d
+nunits	user/sysinfo.asm	/^  nunits = (nbytes + sizeof(Header) - 1)\/sizeof(Header) + 1;$/;"	d
 nunits	user/trace.asm	/^  nunits = (nbytes + sizeof(Header) - 1)\/sizeof(Header) + 1;$/;"	d
-nunits	user/tracee.asm	/^  nunits = (nbytes + sizeof(Header) - 1)\/sizeof(Header) + 1;$/;"	d
 nunits	user/usertests.asm	/^  nunits = (nbytes + sizeof(Header) - 1)\/sizeof(Header) + 1;$/;"	d
 nunits	user/wc.asm	/^  nunits = (nbytes + sizeof(Header) - 1)\/sizeof(Header) + 1;$/;"	d
 nunits	user/xargs.asm	/^  nunits = (nbytes + sizeof(Header) - 1)\/sizeof(Header) + 1;$/;"	d
@@ -4466,10 +4470,10 @@ open	user/sleep.asm	/^.global open$/;"	s
 open	user/sleep.asm	/^open:$/;"	l
 open	user/stressfs.asm	/^.global open$/;"	s
 open	user/stressfs.asm	/^open:$/;"	l
+open	user/sysinfo.asm	/^.global open$/;"	s
+open	user/sysinfo.asm	/^open:$/;"	l
 open	user/trace.asm	/^.global open$/;"	s
 open	user/trace.asm	/^open:$/;"	l
-open	user/tracee.asm	/^.global open$/;"	s
-open	user/tracee.asm	/^open:$/;"	l
 open	user/usertests.asm	/^.global open$/;"	s
 open	user/usertests.asm	/^open:$/;"	l
 open	user/usys.S	/^.global open$/;"	s
@@ -4501,15 +4505,15 @@ os	user/rm.asm	/^  os = s;$/;"	d
 os	user/sh.asm	/^  os = s;$/;"	d
 os	user/sleep.asm	/^  os = s;$/;"	d
 os	user/stressfs.asm	/^  os = s;$/;"	d
+os	user/sysinfo.asm	/^  os = s;$/;"	d
 os	user/trace.asm	/^  os = s;$/;"	d
-os	user/tracee.asm	/^  os = s;$/;"	d
 os	user/usertests.asm	/^  os = s;$/;"	d
 os	user/wc.asm	/^  os = s;$/;"	d
 os	user/xargs.asm	/^  os = s;$/;"	d
 os	user/zombie.asm	/^  os = s;$/;"	d
 outofinodes	user/usertests.c	/^outofinodes(char *s)$/;"	f	typeref:typename:void
 outstanding	kernel/log.c	/^  int outstanding; \/\/ how many FS sys calls are executing.$/;"	m	struct:log	typeref:typename:int	file:
-p	kernel/kernel.asm	/^  p = (char*)PGROUNDUP((uint64)pa_start);$/;"	d
+p	kernel/kernel.asm	/^    p = (char*)PGROUNDUP((uint64)pa_start);$/;"	d
 p	kernel/kernel.asm	/^  p = allocproc();$/;"	d
 p	kernel/kernel.asm	/^  p = myproc();$/;"	d
 p	user/cat.asm	/^  p = sbrk(nu * sizeof(Header));$/;"	d
@@ -4532,8 +4536,8 @@ p	user/rm.asm	/^  p = sbrk(nu * sizeof(Header));$/;"	d
 p	user/sh.asm	/^  p = sbrk(nu * sizeof(Header));$/;"	d
 p	user/sleep.asm	/^  p = sbrk(nu * sizeof(Header));$/;"	d
 p	user/stressfs.asm	/^  p = sbrk(nu * sizeof(Header));$/;"	d
+p	user/sysinfo.asm	/^  p = sbrk(nu * sizeof(Header));$/;"	d
 p	user/trace.asm	/^  p = sbrk(nu * sizeof(Header));$/;"	d
-p	user/tracee.asm	/^  p = sbrk(nu * sizeof(Header));$/;"	d
 p	user/usertests.asm	/^  p = sbrk(amt);$/;"	d
 p	user/usertests.asm	/^  p = sbrk(nu * sizeof(Header));$/;"	d
 p	user/wc.asm	/^  p = sbrk(nu * sizeof(Header));$/;"	d
@@ -4620,10 +4624,10 @@ pipe	user/sleep.asm	/^.global pipe$/;"	s
 pipe	user/sleep.asm	/^pipe:$/;"	l
 pipe	user/stressfs.asm	/^.global pipe$/;"	s
 pipe	user/stressfs.asm	/^pipe:$/;"	l
+pipe	user/sysinfo.asm	/^.global pipe$/;"	s
+pipe	user/sysinfo.asm	/^pipe:$/;"	l
 pipe	user/trace.asm	/^.global pipe$/;"	s
 pipe	user/trace.asm	/^pipe:$/;"	l
-pipe	user/tracee.asm	/^.global pipe$/;"	s
-pipe	user/tracee.asm	/^pipe:$/;"	l
 pipe	user/usertests.asm	/^.global pipe$/;"	s
 pipe	user/usertests.asm	/^pipe:$/;"	l
 pipe	user/usys.S	/^.global pipe$/;"	s
@@ -4679,11 +4683,11 @@ qemu-gdb	Makefile	/^qemu-gdb: $K\/kernel .gdbinit fs.img$/;"	t
 quick	user/usertests.asm	/^    quick = 1;$/;"	d
 quicktests	user/usertests.c	/^} quicktests[] = {$/;"	v	typeref:struct:test[]
 r	kernel/console.c	/^  uint r;  \/\/ Read index$/;"	m	struct:__anonb6393d190108	typeref:typename:uint	file:
+r	kernel/kernel.asm	/^    r = (struct run*)pa;$/;"	d
 r	kernel/kernel.asm	/^    r = devsw[f->major].read(1, addr, n);$/;"	d
+r	kernel/kernel.asm	/^    r = kmem.freelist;$/;"	d
 r	kernel/kernel.asm	/^    r = piperead(f->pipe, addr, n);$/;"	d
 r	kernel/kernel.asm	/^  r = (lk->locked && lk->cpu == mycpu());$/;"	d
-r	kernel/kernel.asm	/^  r = (struct run*)pa;$/;"	d
-r	kernel/kernel.asm	/^  r = kmem.freelist;$/;"	d
 r	kernel/kernel.asm	/^  r = lk->locked && (lk->pid == myproc()->pid);$/;"	d
 r	user/cat.asm	/^  r = fstat(fd, st);$/;"	d
 r	user/echo.asm	/^  r = fstat(fd, st);$/;"	d
@@ -4702,8 +4706,8 @@ r	user/rm.asm	/^  r = fstat(fd, st);$/;"	d
 r	user/sh.asm	/^  r = fstat(fd, st);$/;"	d
 r	user/sleep.asm	/^  r = fstat(fd, st);$/;"	d
 r	user/stressfs.asm	/^  r = fstat(fd, st);$/;"	d
+r	user/sysinfo.asm	/^  r = fstat(fd, st);$/;"	d
 r	user/trace.asm	/^  r = fstat(fd, st);$/;"	d
-r	user/tracee.asm	/^  r = fstat(fd, st);$/;"	d
 r	user/usertests.asm	/^  r = fstat(fd, st);$/;"	d
 r	user/wc.asm	/^  r = fstat(fd, st);$/;"	d
 r	user/xargs.asm	/^  r = fstat(fd, st);$/;"	d
@@ -4768,10 +4772,10 @@ read	user/sleep.asm	/^.global read$/;"	s
 read	user/sleep.asm	/^read:$/;"	l
 read	user/stressfs.asm	/^.global read$/;"	s
 read	user/stressfs.asm	/^read:$/;"	l
+read	user/sysinfo.asm	/^.global read$/;"	s
+read	user/sysinfo.asm	/^read:$/;"	l
 read	user/trace.asm	/^.global read$/;"	s
 read	user/trace.asm	/^read:$/;"	l
-read	user/tracee.asm	/^.global read$/;"	s
-read	user/tracee.asm	/^read:$/;"	l
 read	user/usertests.asm	/^.global read$/;"	s
 read	user/usertests.asm	/^read:$/;"	l
 read	user/usys.S	/^.global read$/;"	s
@@ -4858,10 +4862,10 @@ s	user/sleep.asm	/^          s = "(null)";$/;"	d
 s	user/sleep.asm	/^        s = va_arg(ap, char*);$/;"	d
 s	user/stressfs.asm	/^          s = "(null)";$/;"	d
 s	user/stressfs.asm	/^        s = va_arg(ap, char*);$/;"	d
+s	user/sysinfo.asm	/^          s = "(null)";$/;"	d
+s	user/sysinfo.asm	/^        s = va_arg(ap, char*);$/;"	d
 s	user/trace.asm	/^          s = "(null)";$/;"	d
 s	user/trace.asm	/^        s = va_arg(ap, char*);$/;"	d
-s	user/tracee.asm	/^          s = "(null)";$/;"	d
-s	user/tracee.asm	/^        s = va_arg(ap, char*);$/;"	d
 s	user/umalloc.c	/^  } s;$/;"	m	union:header	typeref:struct:header::__anon3d351ad10108	file:
 s	user/usertests.asm	/^          s = "(null)";$/;"	d
 s	user/usertests.asm	/^        s = va_arg(ap, char*);$/;"	d
@@ -4935,10 +4939,10 @@ sbrk	user/sleep.asm	/^.global sbrk$/;"	s
 sbrk	user/sleep.asm	/^sbrk:$/;"	l
 sbrk	user/stressfs.asm	/^.global sbrk$/;"	s
 sbrk	user/stressfs.asm	/^sbrk:$/;"	l
+sbrk	user/sysinfo.asm	/^.global sbrk$/;"	s
+sbrk	user/sysinfo.asm	/^sbrk:$/;"	l
 sbrk	user/trace.asm	/^.global sbrk$/;"	s
 sbrk	user/trace.asm	/^sbrk:$/;"	l
-sbrk	user/tracee.asm	/^.global sbrk$/;"	s
-sbrk	user/tracee.asm	/^sbrk:$/;"	l
 sbrk	user/usertests.asm	/^.global sbrk$/;"	s
 sbrk	user/usertests.asm	/^sbrk:$/;"	l
 sbrk	user/usys.S	/^.global sbrk$/;"	s
@@ -5008,10 +5012,10 @@ sleep	user/sleep.asm	/^.global sleep$/;"	s
 sleep	user/sleep.asm	/^sleep:$/;"	l
 sleep	user/stressfs.asm	/^.global sleep$/;"	s
 sleep	user/stressfs.asm	/^sleep:$/;"	l
+sleep	user/sysinfo.asm	/^.global sleep$/;"	s
+sleep	user/sysinfo.asm	/^sleep:$/;"	l
 sleep	user/trace.asm	/^.global sleep$/;"	s
 sleep	user/trace.asm	/^sleep:$/;"	l
-sleep	user/tracee.asm	/^.global sleep$/;"	s
-sleep	user/tracee.asm	/^sleep:$/;"	l
 sleep	user/usertests.asm	/^.global sleep$/;"	s
 sleep	user/usertests.asm	/^sleep:$/;"	l
 sleep	user/usys.S	/^.global sleep$/;"	s
@@ -5046,8 +5050,8 @@ src	user/rm.asm	/^  src = vsrc;$/;"	d
 src	user/sh.asm	/^  src = vsrc;$/;"	d
 src	user/sleep.asm	/^  src = vsrc;$/;"	d
 src	user/stressfs.asm	/^  src = vsrc;$/;"	d
+src	user/sysinfo.asm	/^  src = vsrc;$/;"	d
 src	user/trace.asm	/^  src = vsrc;$/;"	d
-src	user/tracee.asm	/^  src = vsrc;$/;"	d
 src	user/usertests.asm	/^  src = vsrc;$/;"	d
 src	user/wc.asm	/^  src = vsrc;$/;"	d
 src	user/xargs.asm	/^  src = vsrc;$/;"	d
@@ -5063,7 +5067,7 @@ start	user/initcode.S	/^start:$/;"	l
 start	user/initcode.asm	/^.globl start$/;"	s
 start	user/initcode.asm	/^start:$/;"	l
 start	user/primes.c	/^int start = 2;$/;"	v	typeref:typename:int
-start	user/xargs.asm	/^      start = word;$/;"	d
+start	user/xargs.asm	/^            start = word;$/;"	d
 started	kernel/kernel.asm	/^    started = 1;$/;"	d
 started	kernel/main.c	/^volatile static int started = 0;$/;"	v	typeref:typename:volatile int	file:
 stat	kernel/stat.h	/^struct stat {$/;"	s
@@ -5120,12 +5124,12 @@ state	user/sleep.asm	/^  state = 0;$/;"	d
 state	user/stressfs.asm	/^        state = '%';$/;"	d
 state	user/stressfs.asm	/^      state = 0;$/;"	d
 state	user/stressfs.asm	/^  state = 0;$/;"	d
+state	user/sysinfo.asm	/^        state = '%';$/;"	d
+state	user/sysinfo.asm	/^      state = 0;$/;"	d
+state	user/sysinfo.asm	/^  state = 0;$/;"	d
 state	user/trace.asm	/^        state = '%';$/;"	d
 state	user/trace.asm	/^      state = 0;$/;"	d
 state	user/trace.asm	/^  state = 0;$/;"	d
-state	user/tracee.asm	/^        state = '%';$/;"	d
-state	user/tracee.asm	/^      state = 0;$/;"	d
-state	user/tracee.asm	/^  state = 0;$/;"	d
 state	user/usertests.asm	/^        state = '%';$/;"	d
 state	user/usertests.asm	/^      state = 0;$/;"	d
 state	user/usertests.asm	/^  state = 0;$/;"	d
@@ -5139,6 +5143,7 @@ state	user/zombie.asm	/^        state = '%';$/;"	d
 state	user/zombie.asm	/^      state = 0;$/;"	d
 state	user/zombie.asm	/^  state = 0;$/;"	d
 stati	kernel/fs.c	/^stati(struct inode *ip, struct stat *st)$/;"	f	typeref:typename:void
+static	kernel/kernel.asm	/^static char *syscall_names[] = {"fork", "exit", "wait", "pipe", "read", "kill", "exec", "fstat",/;"	l
 static	kernel/kernel.asm	/^static char digits[] = "0123456789abcdef";$/;"	l
 static	kernel/kernel.asm	/^static inline uint64$/;"	l
 static	kernel/kernel.asm	/^static inline void $/;"	l
@@ -5213,14 +5218,14 @@ static	user/stressfs.asm	/^static Header *freep;$/;"	l
 static	user/stressfs.asm	/^static Header base;$/;"	l
 static	user/stressfs.asm	/^static char digits[] = "0123456789ABCDEF";$/;"	l
 static	user/stressfs.asm	/^static void$/;"	l
+static	user/sysinfo.asm	/^static Header *freep;$/;"	l
+static	user/sysinfo.asm	/^static Header base;$/;"	l
+static	user/sysinfo.asm	/^static char digits[] = "0123456789ABCDEF";$/;"	l
+static	user/sysinfo.asm	/^static void$/;"	l
 static	user/trace.asm	/^static Header *freep;$/;"	l
 static	user/trace.asm	/^static Header base;$/;"	l
 static	user/trace.asm	/^static char digits[] = "0123456789ABCDEF";$/;"	l
 static	user/trace.asm	/^static void$/;"	l
-static	user/tracee.asm	/^static Header *freep;$/;"	l
-static	user/tracee.asm	/^static Header base;$/;"	l
-static	user/tracee.asm	/^static char digits[] = "0123456789ABCDEF";$/;"	l
-static	user/tracee.asm	/^static void$/;"	l
 static	user/usertests.asm	/^static Header *freep;$/;"	l
 static	user/usertests.asm	/^static Header base;$/;"	l
 static	user/usertests.asm	/^static char digits[] = "0123456789ABCDEF";$/;"	l
@@ -5248,6 +5253,7 @@ strlen	kernel/string.c	/^strlen(const char *s)$/;"	f	typeref:typename:int
 strlen	user/ulib.c	/^strlen(const char *s)$/;"	f	typeref:typename:uint
 strncmp	kernel/string.c	/^strncmp(const char *p, const char *q, uint n)$/;"	f	typeref:typename:int
 strncpy	kernel/string.c	/^strncpy(char *s, const char *t, int n)$/;"	f	typeref:typename:char *
+struct	kernel/kernel.asm	/^    struct proc *p = myproc();$/;"	l
 struct	kernel/kernel.asm	/^  struct proc *p = c->proc;$/;"	l
 struct	kernel/kernel.asm	/^  struct proc *p = myproc();$/;"	l
 struct	kernel/kernel.asm	/^  struct proc *p;$/;"	l
@@ -5280,6 +5286,7 @@ sys_uptime	kernel/sysproc.c	/^sys_uptime(void)$/;"	f	typeref:typename:uint64
 sys_wait	kernel/sysproc.c	/^sys_wait(void)$/;"	f	typeref:typename:uint64
 sys_write	kernel/sysfile.c	/^sys_write(void)$/;"	f	typeref:typename:uint64
 syscall	kernel/syscall.c	/^syscall(void)$/;"	f	typeref:typename:void
+syscall_names	kernel/syscall.c	/^static char *syscall_names[] = {"fork", "exit", "wait", "pipe", "read", "kill", "exec", "fstat",/;"	v	typeref:typename:char * []	file:
 syscalls	kernel/syscall.c	/^static uint64 (*syscalls[])(void) = {$/;"	v	typeref:typename:uint64 (* [])(void)	file:
 sz	kernel/kernel.asm	/^    sz = sz1;$/;"	d
 sz	kernel/kernel.asm	/^    sz = uvmdealloc(p->pagetable, sz, sz + n);$/;"	d
@@ -5345,10 +5352,10 @@ trace	user/sleep.asm	/^.global trace$/;"	s
 trace	user/sleep.asm	/^trace:$/;"	l
 trace	user/stressfs.asm	/^.global trace$/;"	s
 trace	user/stressfs.asm	/^trace:$/;"	l
+trace	user/sysinfo.asm	/^.global trace$/;"	s
+trace	user/sysinfo.asm	/^trace:$/;"	l
 trace	user/trace.asm	/^.global trace$/;"	s
 trace	user/trace.asm	/^trace:$/;"	l
-trace	user/tracee.asm	/^.global trace$/;"	s
-trace	user/tracee.asm	/^trace:$/;"	l
 trace	user/usertests.asm	/^.global trace$/;"	s
 trace	user/usertests.asm	/^trace:$/;"	l
 trace	user/usys.S	/^.global trace$/;"	s
@@ -5412,8 +5419,8 @@ uint	user/rm.asm	/^uint$/;"	l
 uint	user/sh.asm	/^uint$/;"	l
 uint	user/sleep.asm	/^uint$/;"	l
 uint	user/stressfs.asm	/^uint$/;"	l
+uint	user/sysinfo.asm	/^uint$/;"	l
 uint	user/trace.asm	/^uint$/;"	l
-uint	user/tracee.asm	/^uint$/;"	l
 uint	user/usertests.asm	/^uint$/;"	l
 uint	user/wc.asm	/^uint$/;"	l
 uint	user/xargs.asm	/^uint$/;"	l
@@ -5458,10 +5465,10 @@ unlink	user/sleep.asm	/^.global unlink$/;"	s
 unlink	user/sleep.asm	/^unlink:$/;"	l
 unlink	user/stressfs.asm	/^.global unlink$/;"	s
 unlink	user/stressfs.asm	/^unlink:$/;"	l
+unlink	user/sysinfo.asm	/^.global unlink$/;"	s
+unlink	user/sysinfo.asm	/^unlink:$/;"	l
 unlink	user/trace.asm	/^.global unlink$/;"	s
 unlink	user/trace.asm	/^unlink:$/;"	l
-unlink	user/tracee.asm	/^.global unlink$/;"	s
-unlink	user/tracee.asm	/^unlink:$/;"	l
 unlink	user/usertests.asm	/^.global unlink$/;"	s
 unlink	user/usertests.asm	/^unlink:$/;"	l
 unlink	user/usys.S	/^.global unlink$/;"	s
@@ -5509,10 +5516,10 @@ uptime	user/sleep.asm	/^.global uptime$/;"	s
 uptime	user/sleep.asm	/^uptime:$/;"	l
 uptime	user/stressfs.asm	/^.global uptime$/;"	s
 uptime	user/stressfs.asm	/^uptime:$/;"	l
+uptime	user/sysinfo.asm	/^.global uptime$/;"	s
+uptime	user/sysinfo.asm	/^uptime:$/;"	l
 uptime	user/trace.asm	/^.global uptime$/;"	s
 uptime	user/trace.asm	/^uptime:$/;"	l
-uptime	user/tracee.asm	/^.global uptime$/;"	s
-uptime	user/tracee.asm	/^uptime:$/;"	l
 uptime	user/usertests.asm	/^.global uptime$/;"	s
 uptime	user/usertests.asm	/^uptime:$/;"	l
 uptime	user/usys.S	/^.global uptime$/;"	s
@@ -5594,10 +5601,10 @@ void	user/sleep.asm	/^void *$/;"	l
 void	user/sleep.asm	/^void$/;"	l
 void	user/stressfs.asm	/^void *$/;"	l
 void	user/stressfs.asm	/^void$/;"	l
+void	user/sysinfo.asm	/^void *$/;"	l
+void	user/sysinfo.asm	/^void$/;"	l
 void	user/trace.asm	/^void *$/;"	l
 void	user/trace.asm	/^void$/;"	l
-void	user/tracee.asm	/^void *$/;"	l
-void	user/tracee.asm	/^void$/;"	l
 void	user/usertests.asm	/^void *$/;"	l
 void	user/usertests.asm	/^void$/;"	l
 void	user/wc.asm	/^void *$/;"	l
@@ -5661,10 +5668,10 @@ wait	user/sleep.asm	/^.global wait$/;"	s
 wait	user/sleep.asm	/^wait:$/;"	l
 wait	user/stressfs.asm	/^.global wait$/;"	s
 wait	user/stressfs.asm	/^wait:$/;"	l
+wait	user/sysinfo.asm	/^.global wait$/;"	s
+wait	user/sysinfo.asm	/^wait:$/;"	l
 wait	user/trace.asm	/^.global wait$/;"	s
 wait	user/trace.asm	/^wait:$/;"	l
-wait	user/tracee.asm	/^.global wait$/;"	s
-wait	user/tracee.asm	/^wait:$/;"	l
 wait	user/usertests.asm	/^.global wait$/;"	s
 wait	user/usertests.asm	/^wait:$/;"	l
 wait	user/usys.S	/^.global wait$/;"	s
@@ -5719,10 +5726,10 @@ write	user/sleep.asm	/^.global write$/;"	s
 write	user/sleep.asm	/^write:$/;"	l
 write	user/stressfs.asm	/^.global write$/;"	s
 write	user/stressfs.asm	/^write:$/;"	l
+write	user/sysinfo.asm	/^.global write$/;"	s
+write	user/sysinfo.asm	/^write:$/;"	l
 write	user/trace.asm	/^.global write$/;"	s
 write	user/trace.asm	/^write:$/;"	l
-write	user/tracee.asm	/^.global write$/;"	s
-write	user/tracee.asm	/^write:$/;"	l
 write	user/usertests.asm	/^.global write$/;"	s
 write	user/usertests.asm	/^write:$/;"	l
 write	user/usys.S	/^.global write$/;"	s
@@ -5776,10 +5783,10 @@ x	user/sleep.asm	/^    x = -xx;$/;"	d
 x	user/sleep.asm	/^    x = xx;$/;"	d
 x	user/stressfs.asm	/^    x = -xx;$/;"	d
 x	user/stressfs.asm	/^    x = xx;$/;"	d
+x	user/sysinfo.asm	/^    x = -xx;$/;"	d
+x	user/sysinfo.asm	/^    x = xx;$/;"	d
 x	user/trace.asm	/^    x = -xx;$/;"	d
 x	user/trace.asm	/^    x = xx;$/;"	d
-x	user/tracee.asm	/^    x = -xx;$/;"	d
-x	user/tracee.asm	/^    x = xx;$/;"	d
 x	user/umalloc.c	/^  Align x;$/;"	m	union:header	typeref:typename:Align	file:
 x	user/usertests.asm	/^    x = -xx;$/;"	d
 x	user/usertests.asm	/^    x = x * 1103515245 + 12345;$/;"	d
